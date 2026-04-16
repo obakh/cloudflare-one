@@ -1,6 +1,12 @@
 {
 	"extends": "@repo/config/tsconfig.cloudflare.json",
-	"include": [".react-router/types/**/*", "app/**/*", "api/**/*", "worker-configuration.d.ts"],
+	"include": [
+		".react-router/types/**/*",
+		"app/**/*",
+		"api/**/*",
+		"worker-configuration.d.ts",
+		"env.d.ts"
+	],
 	"compilerOptions": {
 		"rootDirs": [".", "./.react-router/types"],
 		"paths": {
