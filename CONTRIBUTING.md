@@ -1,4 +1,6 @@
-# Contributing to Monorepo
+# Contributing to Cloudflare One
+
+> **⚠️ DISCLAIMER**: This is an unofficial, community-created template and is NOT affiliated with or endorsed by Cloudflare, Inc. This project represents my personal work only.
 
 Thank you for your interest in contributing! This guide will help you get started.
 
@@ -24,8 +26,8 @@ Thank you for your interest in contributing! This guide will help you get starte
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd cf-monorepo
+   git clone https://github.com/obakh/cloudflare-one.git
+   cd cloudflare-one
    ```
 
 2. **Install dependencies**

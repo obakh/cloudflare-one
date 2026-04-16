@@ -1,6 +1,15 @@
-# Monorepo Template
+# Cloudflare One
+
+[![CI](https://github.com/obakh/cloudflare-one/actions/workflows/ci.yml/badge.svg)](https://github.com/obakh/cloudflare-one/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg)](https://pnpm.io/)
+[![Turborepo](https://img.shields.io/badge/built%20with-Turborepo-ef4444.svg)](https://turbo.build/repo)
+
+> **⚠️ DISCLAIMER**: This is an **unofficial, community-created template** and is **NOT affiliated with, endorsed by, or representing Cloudflare, Inc.** in any way. This project is my personal work and does not represent Cloudflare's official standards, recommendations, or quality guidelines. Use at your own discretion.
 
 A scalable full-stack monorepo with React Router 7 + Cloudflare Workers, powered by pnpm workspaces and Turborepo.
+
+**📋 [Read Full Disclaimer](./DISCLAIMER.md)** - This is an unofficial community template, not affiliated with Cloudflare, Inc.
 
 ## Tech Stack
 
@@ -92,6 +101,8 @@ We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for:
 - Testing guidelines
 - Commit conventions
 - Pull request process
+
+**Note**: This is an unofficial community project. See [DISCLAIMER.md](./DISCLAIMER.md) for more information.
 
 ## Security
 

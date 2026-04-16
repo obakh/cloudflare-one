@@ -9,6 +9,11 @@ dist/
 # Turborepo
 .turbo/
 
+# Package manager
+.pnpm-store/
+.yarn/
+.npm/
+
 # Environment
 .env
 .env.local
