@@ -189,21 +189,33 @@ Before you begin, ensure you have the following installed:
    # Main web app (http://localhost:5173)
    pnpm --filter @repo/web dev
 
+   # Secondary app (http://localhost:5174)
+   pnpm --filter @repo/app dev
+
    # Blog (http://localhost:4321)
    pnpm --filter @repo/blog dev
 
    # Admin dashboard (http://localhost:4322)
    pnpm --filter @repo/admin dev
 
-   # Secondary app (http://localhost:5174)
-   pnpm --filter @repo/app dev
+   # Documentation (http://localhost:3004)
+   pnpm --filter @repo/docs dev
+
+   # Storybook (http://localhost:6006)
+   pnpm --filter @repo/storybook dev
+
+   # Desktop app (http://localhost:1420)
+   pnpm --filter @repo/desktop dev
    ```
 
 6. **Access the apps**
    - Web app: http://localhost:5173
+   - Secondary app: http://localhost:5174
    - Blog: http://localhost:4321
    - Admin: http://localhost:4322
-   - App: http://localhost:5174
+   - Docs: http://localhost:3004
+   - Storybook: http://localhost:6006
+   - Desktop: http://localhost:1420 (Tauri app)
 
 ### Next Steps
 
