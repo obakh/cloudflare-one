@@ -28,7 +28,7 @@ export function BubbleMenu({
 				<div className="flex w-fit max-w-[90vw] overflow-hidden rounded-full border border-border bg-background text-mono font-regular">
 					<BubbleMenuItem
 						editor={editor}
-						action={() => editor.chain().focus().toggleBold().run()}
+						action={() => editor.chain().focus().toggleMark("bold").run()}
 						isActive={editor.isActive("bold")}
 					>
 						<MdOutlineFormatBold className="size-4" />
@@ -37,7 +37,7 @@ export function BubbleMenu({
 
 					<BubbleMenuItem
 						editor={editor}
-						action={() => editor.chain().focus().toggleItalic().run()}
+						action={() => editor.chain().focus().toggleMark("italic").run()}
 						isActive={editor.isActive("italic")}
 					>
 						<MdOutlineFormatItalic className="size-4" />
@@ -46,7 +46,7 @@ export function BubbleMenu({
 
 					<BubbleMenuItem
 						editor={editor}
-						action={() => editor.chain().focus().toggleStrike().run()}
+						action={() => editor.chain().focus().toggleMark("strike").run()}
 						isActive={editor.isActive("strike")}
 					>
 						<MdOutlineFormatStrikethrough className="size-4" />

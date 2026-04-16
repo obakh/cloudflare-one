@@ -4,8 +4,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "astro dev --port 4321",
-		"build": "astro build",
-		"preview": "astro build && wrangler dev",
+		"build": "astro build && echo '_worker.js' > dist/.assetsignore",
+		"preview": "astro build && echo '_worker.js' > dist/.assetsignore && wrangler dev",
 		"deploy": "wrangler deploy",
 		"versions:upload": "wrangler versions upload",
 		"versions:deploy": "wrangler versions deploy",

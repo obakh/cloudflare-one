@@ -6,17 +6,17 @@ import Underline from "@tiptap/extension-underline";
 import StarterKit from "@tiptap/starter-kit";
 
 // Add your extensions here
-const extensions = [
-	StarterKit,
+const baseExtensions = [
+	StarterKit.configure({}),
 	Underline,
 	Link.configure({
 		openOnClick: false,
 		autolink: true,
 		defaultProtocol: "https",
 	}),
-];
+] as any[];
 
 export function registerExtensions(options?: { placeholder?: string }) {
 	const { placeholder } = options ?? {};
-	return [...extensions, Placeholder.configure({ placeholder })];
+	return [...baseExtensions, Placeholder.configure({ placeholder })];
 }

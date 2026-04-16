@@ -30,7 +30,7 @@ export interface AuthEnv {
  * });
  * ```
  */
-export function createAuth(env: AuthEnv): ReturnType<typeof betterAuth> {
+export function createAuth(env: AuthEnv) {
 	const db = createDrizzle(env.DB);
 
 	return betterAuth({
@@ -40,8 +40,3 @@ export function createAuth(env: AuthEnv): ReturnType<typeof betterAuth> {
 		secret: env.BETTER_AUTH_SECRET,
 	});
 }
-
-/**
- * Type for the auth instance
- */
-export type Auth = ReturnType<typeof createAuth>;
