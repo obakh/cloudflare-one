@@ -7,7 +7,7 @@
 		"dev": "react-router dev",
 		"build": "react-router build",
 		"start": "react-router-serve ./build/server/index.js",
-		"check-types": "tsc --noEmit",
+		"check-types": "react-router typegen && tsc --noEmit",
 		"preview": "wrangler dev",
 		"deploy": "wrangler deploy"
 	},
