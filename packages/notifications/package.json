@@ -33,6 +33,6 @@
 		"@cloudflare/workers-types": "^4.20241230.0",
 		"@types/react": "^19.0.0",
 		"react-email": "^3.0.0",
-		"typescript": "^5.7.0"
+		"typescript": "^6.0.2"
 	}
 }

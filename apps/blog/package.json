@@ -34,7 +34,7 @@
 		"@types/react-dom": "^19.0.0",
 		"rimraf": "^6.0.0",
 		"tailwindcss-animate": "^1.0.7",
-		"typescript": "^5.7.0",
+		"typescript": "^6.0.2",
 		"wrangler": "4.56.0"
 	}
 }

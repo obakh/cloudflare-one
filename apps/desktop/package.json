@@ -35,7 +35,7 @@
 		"@types/react-dom": "^19.0.0",
 		"@vitejs/plugin-react": "^4.3.4",
 		"cross-env": "^7.0.3",
-		"typescript": "^5.7.2",
+		"typescript": "^6.0.2",
 		"vite": "^6.0.0"
 	}
 }
