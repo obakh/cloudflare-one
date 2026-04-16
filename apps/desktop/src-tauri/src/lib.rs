@@ -210,7 +210,7 @@ pub fn run() {
 
             let tray_menu = Menu::with_items(app, &[&show_item, &check_updates_item, &quit_item])?;
 
-            let app_handle_for_tray = app_handle.clone();
+            let _app_handle_for_tray = app_handle.clone();
             let _tray = TrayIconBuilder::new()
                 .menu(&tray_menu)
                 .show_menu_on_left_click(false)
