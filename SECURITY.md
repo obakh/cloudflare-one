@@ -20,7 +20,7 @@ We take the security of our monorepo seriously. If you believe you have found a 
 
 ### Please Do
 
-**Report security vulnerabilities by emailing:** [security@yourcompany.com]
+**Report security vulnerabilities by emailing:** mbkaj@gmai.com
 
 Include the following information:
 - Type of vulnerability
@@ -165,6 +165,6 @@ This project follows:
 
 ## Contact
 
-For security concerns, contact: [security@yourcompany.com]
+For security concerns, contact: mbkaj@gmai.com
 
 For general questions, open a GitHub issue.
