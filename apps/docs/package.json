@@ -1,0 +1,11 @@
+{
+	"name": "@repo/docs",
+	"private": true,
+	"scripts": {
+		"dev": "mintlify dev --port 3004",
+		"build": "echo 'Mintlify builds are handled by the platform'"
+	},
+	"devDependencies": {
+		"mintlify": "^4.2.202"
+	}
+}

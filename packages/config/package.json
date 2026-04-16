@@ -1,0 +1,10 @@
+{
+	"name": "@repo/config",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./tsconfig.base.json": "./tsconfig.base.json",
+		"./tsconfig.react.json": "./tsconfig.react.json",
+		"./tsconfig.cloudflare.json": "./tsconfig.cloudflare.json"
+	}
+}

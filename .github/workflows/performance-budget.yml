@@ -1,0 +1,109 @@
+name: Performance Budget
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'apps/**'
+      - 'packages/**'
+
+jobs:
+  check-budgets:
+    name: 📊 Check Performance Budgets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build apps
+        run: pnpm build
+
+      - name: 📊 Check Bundle Budgets
+        run: |
+          echo "## 📊 Performance Budget Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Define budgets (in KB)
+          WEB_BUDGET=3000
+          BLOG_BUDGET=500
+          ADMIN_BUDGET=2000
+          WORKER_BUDGET=1000
+
+          # Check Web app
+          if [ -d "apps/web/build" ]; then
+            WEB_SIZE=$(du -sk apps/web/build | cut -f1)
+            echo "### Web App" >> $GITHUB_STEP_SUMMARY
+            echo "- Size: ${WEB_SIZE}KB" >> $GITHUB_STEP_SUMMARY
+            echo "- Budget: ${WEB_BUDGET}KB" >> $GITHUB_STEP_SUMMARY
+
+            if [ $WEB_SIZE -gt $WEB_BUDGET ]; then
+              echo "- Status: ❌ Over budget by $((WEB_SIZE - WEB_BUDGET))KB" >> $GITHUB_STEP_SUMMARY
+              echo "::error::Web app exceeds performance budget: ${WEB_SIZE}KB > ${WEB_BUDGET}KB"
+              exit 1
+            else
+              echo "- Status: ✅ Within budget ($((WEB_BUDGET - WEB_SIZE))KB remaining)" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check Blog
+          if [ -d "apps/blog/dist" ]; then
+            BLOG_SIZE=$(du -sk apps/blog/dist | cut -f1)
+            echo "### Blog" >> $GITHUB_STEP_SUMMARY
+            echo "- Size: ${BLOG_SIZE}KB" >> $GITHUB_STEP_SUMMARY
+            echo "- Budget: ${BLOG_BUDGET}KB" >> $GITHUB_STEP_SUMMARY
+
+            if [ $BLOG_SIZE -gt $BLOG_BUDGET ]; then
+              echo "- Status: ⚠️ Over budget by $((BLOG_SIZE - BLOG_BUDGET))KB" >> $GITHUB_STEP_SUMMARY
+              echo "::warning::Blog exceeds performance budget: ${BLOG_SIZE}KB > ${BLOG_BUDGET}KB"
+            else
+              echo "- Status: ✅ Within budget ($((BLOG_BUDGET - BLOG_SIZE))KB remaining)" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check Admin
+          if [ -d "apps/admin/dist" ]; then
+            ADMIN_SIZE=$(du -sk apps/admin/dist | cut -f1)
+            echo "### Admin" >> $GITHUB_STEP_SUMMARY
+            echo "- Size: ${ADMIN_SIZE}KB" >> $GITHUB_STEP_SUMMARY
+            echo "- Budget: ${ADMIN_BUDGET}KB" >> $GITHUB_STEP_SUMMARY
+
+            if [ $ADMIN_SIZE -gt $ADMIN_BUDGET ]; then
+              echo "- Status: ⚠️ Over budget by $((ADMIN_SIZE - ADMIN_BUDGET))KB" >> $GITHUB_STEP_SUMMARY
+              echo "::warning::Admin exceeds performance budget: ${ADMIN_SIZE}KB > ${ADMIN_BUDGET}KB"
+            else
+              echo "- Status: ✅ Within budget ($((ADMIN_BUDGET - ADMIN_SIZE))KB remaining)" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check Worker bundles (Cloudflare has 1MB limit)
+          echo "### Cloudflare Worker Bundles" >> $GITHUB_STEP_SUMMARY
+          for worker in apps/web/build/_worker.js apps/blog/dist/_worker.js apps/admin/dist/_worker.js; do
+            if [ -f "$worker" ]; then
+              WORKER_SIZE=$(du -sk "$worker" | cut -f1)
+              WORKER_NAME=$(basename $(dirname "$worker"))
+              echo "- $WORKER_NAME: ${WORKER_SIZE}KB / ${WORKER_BUDGET}KB" >> $GITHUB_STEP_SUMMARY
+
+              if [ $WORKER_SIZE -gt $WORKER_BUDGET ]; then
+                echo "  - ❌ Exceeds Cloudflare Worker limit!" >> $GITHUB_STEP_SUMMARY
+                echo "::error::Worker bundle too large: ${WORKER_SIZE}KB > ${WORKER_BUDGET}KB"
+                exit 1
+              fi
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> 💡 Performance budgets help maintain fast load times" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,35 @@
+{
+	"name": "@repo/location",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"default": "./src/index.ts"
+		},
+		"./countries": {
+			"types": "./src/countries.ts",
+			"default": "./src/countries.ts"
+		},
+		"./currencies": {
+			"types": "./src/currencies.ts",
+			"default": "./src/currencies.ts"
+		},
+		"./timezones": {
+			"types": "./src/timezones.ts",
+			"default": "./src/timezones.ts"
+		}
+	},
+	"scripts": {
+		"check-types": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/i18n": "workspace:*"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250620.0",
+		"@repo/config": "workspace:*",
+		"typescript": "^5.7.2"
+	}
+}

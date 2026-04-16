@@ -1,0 +1,7 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "web-test",
+	"compatibility_date": "2025-10-08",
+	"main": "./api/index.js",
+	"compatibility_flags": ["nodejs_compat"]
+}

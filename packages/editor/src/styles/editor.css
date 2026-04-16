@@ -1,0 +1,231 @@
+/**
+ * Editor Styles
+ *
+ * Base styles for the TipTap editor.
+ */
+
+/* Placeholder */
+.ProseMirror .is-editor-empty:first-child::before,
+.ProseMirror .is-empty::before {
+	content: attr(data-placeholder);
+	@apply h-0 text-muted-foreground float-left pointer-events-none;
+}
+
+/* Custom image styles */
+.ProseMirror:not(.dragging) img {
+	transition: filter 0.1s ease-in-out;
+
+	&:hover {
+		@apply cursor-pointer brightness-90;
+	}
+}
+
+.img-placeholder {
+	@apply relative;
+
+	&::before {
+		@apply absolute left-1/2 top-1/2 w-9 h-9 border-[3px] border-t rounded-[50%] box-border;
+
+		animation: spinning 0.6s linear infinite;
+		content: "";
+	}
+}
+
+@keyframes spinning {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Custom TODO list checkboxes */
+ul[data-type="taskList"] li > label {
+	@apply mr-1 select-none;
+}
+
+@media screen and (width <= 768px) {
+	ul[data-type="taskList"] li > label {
+		@apply mr-2;
+	}
+}
+
+ul[data-type="taskList"] li > label input[type="checkbox"] {
+	@apply relative top-1.5 grid m-0 mr-1.5 appearance-none cursor-pointer place-content-center w-[18px] h-[18px] border bg-background rounded-sm border-border;
+
+	&:hover {
+		@apply bg-background;
+	}
+
+	&:active {
+		@apply bg-card;
+	}
+
+	&::before {
+		width: 0.65em;
+		height: 0.65em;
+		box-shadow: inset 1em 1em;
+		clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+		content: "";
+		transform: scale(0);
+		transform-origin: center;
+		transition: 120ms transform ease-in-out;
+	}
+
+	&:checked::before {
+		transform: scale(1);
+	}
+}
+
+ul[data-type="taskList"] li[data-checked="true"] > div > p {
+	@apply line-through text-muted-foreground;
+
+	text-decoration-thickness: 2px;
+}
+
+/* Overwrite tippy-box original max-width */
+.tippy-box {
+	max-width: 400px !important;
+}
+
+/* Panel styles */
+div[data-panel-type] {
+	@apply p-4 bg-muted rounded-md my-4;
+}
+
+div[data-panel-type] > *:last-child {
+	@apply mb-0;
+}
+
+div[data-panel-type="info"] {
+	@apply bg-sky-50 text-sky-800 dark:bg-sky-950 dark:text-sky-200;
+}
+
+div[data-panel-type="note"] {
+	@apply bg-indigo-50 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-200;
+}
+
+div[data-panel-type="success"] {
+	@apply bg-emerald-50 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200;
+}
+
+div[data-panel-type="warning"] {
+	@apply bg-amber-50 text-amber-800 dark:bg-amber-950 dark:text-amber-200;
+}
+
+div[data-panel-type="error"] {
+	@apply bg-rose-50 text-rose-800 dark:bg-rose-950 dark:text-rose-200;
+}
+
+/* Selection styles */
+.ProseMirror hr.ProseMirror-selectednode {
+	@apply border-primary;
+}
+
+.ProseMirror-hideselection * {
+	caret-color: inherit !important;
+}
+
+.ProseMirror-hideselection *::selection {
+	@apply !bg-violet-500 !text-white;
+}
+
+/* Focus styles */
+.ProseMirror:focus {
+	outline: none;
+}
+
+/* Code block styles */
+.ProseMirror pre {
+	@apply bg-muted rounded-lg p-4 font-mono text-sm overflow-x-auto;
+}
+
+.ProseMirror pre code {
+	@apply bg-transparent p-0;
+}
+
+/* Inline code */
+.ProseMirror code {
+	@apply bg-muted rounded px-1.5 py-0.5 font-mono text-sm;
+}
+
+/* Blockquote */
+.ProseMirror blockquote {
+	@apply border-l-4 border-primary pl-4 italic;
+}
+
+/* Links */
+.ProseMirror a {
+	@apply text-primary underline underline-offset-2 cursor-pointer;
+}
+
+/* Tables */
+.ProseMirror table {
+	@apply border-collapse table-auto w-full my-4;
+}
+
+.ProseMirror th,
+.ProseMirror td {
+	@apply border border-border px-3 py-2 text-left align-top;
+}
+
+.ProseMirror th {
+	@apply bg-muted font-semibold;
+}
+
+/* Horizontal rule */
+.ProseMirror hr {
+	@apply border-t border-border my-4;
+}
+
+/* Lists */
+.ProseMirror ul {
+	@apply list-disc list-outside ml-4;
+}
+
+.ProseMirror ol {
+	@apply list-decimal list-outside ml-4;
+}
+
+.ProseMirror li {
+	@apply my-1;
+}
+
+/* Headings */
+.ProseMirror h1 {
+	@apply text-3xl font-bold mt-6 mb-4;
+}
+
+.ProseMirror h2 {
+	@apply text-2xl font-semibold mt-5 mb-3;
+}
+
+.ProseMirror h3 {
+	@apply text-xl font-semibold mt-4 mb-2;
+}
+
+.ProseMirror h4 {
+	@apply text-lg font-medium mt-3 mb-2;
+}
+
+/* Paragraphs */
+.ProseMirror p {
+	@apply my-2 leading-relaxed;
+}
+
+/* Images */
+.ProseMirror img {
+	@apply max-w-full h-auto rounded-lg;
+}
+
+/* YouTube embeds */
+.ProseMirror div[data-youtube-video] {
+	@apply relative pb-[56.25%] h-0 overflow-hidden rounded-lg my-4;
+}
+
+.ProseMirror div[data-youtube-video] iframe {
+	@apply absolute top-0 left-0 w-full h-full;
+}
+
+/* Highlight */
+.ProseMirror mark {
+	@apply bg-yellow-200 dark:bg-yellow-800 rounded px-0.5;
+}

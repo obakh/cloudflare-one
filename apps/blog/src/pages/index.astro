@@ -1,0 +1,58 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import { BlogCard } from '../components/BlogCard';
+import { HeroSection } from '../components/HeroSection';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+).slice(0, 3);
+
+const formatDate = (date: Date) => date.toLocaleDateString('en-us', {
+	year: 'numeric',
+	month: 'short',
+	day: 'numeric',
+});
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main class="min-h-screen">
+			<HeroSection 
+				title="Welcome to My Blog"
+				description={`A blog built with <a href="https://astro.build/" class="text-primary underline hover:no-underline">Astro</a> and deployed on <a href="https://workers.cloudflare.com/" class="text-primary underline hover:no-underline">Cloudflare Workers</a>.`}
+				client:load
+			/>
+
+			<!-- Recent Posts -->
+			<section class="max-w-4xl mx-auto px-4 py-12">
+				<h2 class="text-2xl font-bold text-foreground mb-8">Recent Posts</h2>
+				<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+					{posts.map((post) => (
+						<BlogCard
+							href={`/blog/${post.id}/`}
+							image={post.data.heroImage || ''}
+							title={post.data.title}
+							date={formatDate(post.data.pubDate)}
+							client:load
+						/>
+					))}
+				</div>
+				<div class="text-center mt-8">
+					<a href="/blog" class="text-primary underline hover:no-underline">
+						View all posts →
+					</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

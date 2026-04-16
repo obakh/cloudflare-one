@@ -1,0 +1,28 @@
+{
+	"name": "@repo/i18n",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./locale": "./src/locale/index.ts",
+		"./translator": "./src/translator/index.ts",
+		"./react": "./src/react/index.tsx"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"i18next": "^24.2.3",
+		"i18next-browser-languagedetector": "^8.0.4",
+		"react-i18next": "^15.4.1"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250109.0",
+		"@types/react": "^19.0.7",
+		"typescript": "^5.7.2"
+	}
+}

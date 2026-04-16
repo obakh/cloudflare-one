@@ -1,0 +1,27 @@
+{
+	"name": "@repo/db",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"check-types": "tsc --noEmit",
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"exports": {
+		".": "./src/index.ts",
+		"./client": "./src/client/index.ts",
+		"./drizzle": "./src/drizzle/index.ts",
+		"./d1": "./src/d1/index.ts"
+	},
+	"dependencies": {
+		"drizzle-orm": "^0.44.4",
+		"pg": "^8.13.1"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20241230.0",
+		"@types/pg": "^8.11.10",
+		"typescript": "^5.7.0",
+		"vitest": "^2.1.8"
+	}
+}

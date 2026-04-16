@@ -1,0 +1,7 @@
+{
+	"extends": "@repo/config/tsconfig.react.json",
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"outDir": "dist"
+	}
+}

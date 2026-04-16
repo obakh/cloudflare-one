@@ -1,0 +1,55 @@
+{
+	"name": "cloudflare-one",
+	"version": "1.0.0",
+	"description": "Unofficial community template: A scalable full-stack monorepo with React Router 7 + Cloudflare Workers (not affiliated with Cloudflare, Inc.)",
+	"private": true,
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/obakh/cloudflare-one.git"
+	},
+	"bugs": {
+		"url": "https://github.com/obakh/cloudflare-one/issues"
+	},
+	"homepage": "https://github.com/obakh/cloudflare-one#readme",
+	"license": "MIT",
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"check-types": "turbo check-types",
+		"clean": "turbo clean && rimraf node_modules",
+		"format": "biome format --write .",
+		"lint": "biome check apps packages e2e",
+		"lint:fix": "biome check --write --unsafe apps packages e2e",
+		"lint:apps": "biome check --write --unsafe apps",
+		"lint:packages": "biome check --write --unsafe packages",
+		"test": "turbo test",
+		"test:e2e": "playwright test",
+		"test:e2e:ui": "playwright test --ui",
+		"test:coverage": "turbo test -- --coverage",
+		"deploy": "turbo deploy",
+		"deploy:preview": "turbo deploy -- --env preview",
+		"deploy:web": "pnpm --filter @repo/web deploy",
+		"deploy:blog": "pnpm --filter @repo/blog deploy",
+		"deploy:admin": "pnpm --filter @repo/admin deploy",
+		"preview:web": "pnpm --filter @repo/web versions:upload",
+		"preview:blog": "pnpm --filter @repo/blog versions:upload",
+		"preview:admin": "pnpm --filter @repo/admin versions:upload",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.3.11",
+		"@commitlint/cli": "^19.0.0",
+		"@commitlint/config-conventional": "^19.0.0",
+		"@playwright/test": "^1.49.0",
+		"@vitest/coverage-v8": "^2.1.8",
+		"husky": "^9.0.0",
+		"lint-staged": "^15.0.0",
+		"rimraf": "^6.0.0",
+		"turbo": "^2.3.0"
+	},
+	"packageManager": "pnpm@9.15.0",
+	"engines": {
+		"node": ">=20.16.0"
+	}
+}

@@ -1,0 +1,5 @@
+# Run lint-staged for formatting and linting
+npx.cmd lint-staged
+
+# Run type checking on staged files
+pnpm check-types

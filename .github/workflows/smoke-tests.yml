@@ -1,0 +1,79 @@
+name: Smoke Tests
+
+on:
+  workflow_run:
+    workflows: ["Deploy Web", "Deploy Blog", "Deploy Admin"]
+    types:
+      - completed
+
+jobs:
+  smoke-test:
+    name: 🔥 Smoke Tests
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🔥 Test Web App
+        run: |
+          echo "## 🔥 Smoke Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Get deployment URL from workflow
+          # For now, using production URLs
+          WEB_URL="https://your-web-app.pages.dev"
+          BLOG_URL="https://your-blog.pages.dev"
+          ADMIN_URL="https://your-admin.pages.dev"
+
+          echo "### Web App" >> $GITHUB_STEP_SUMMARY
+
+          # Test Web app is accessible
+          if curl -f -s -o /dev/null -w "%{http_code}" "$WEB_URL" | grep -q "200"; then
+            echo "- ✅ Web app is accessible" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ Web app is not accessible" >> $GITHUB_STEP_SUMMARY
+            echo "::error::Web app smoke test failed"
+            exit 1
+          fi
+
+          # Test response time
+          RESPONSE_TIME=$(curl -o /dev/null -s -w '%{time_total}' "$WEB_URL")
+          echo "- Response time: ${RESPONSE_TIME}s" >> $GITHUB_STEP_SUMMARY
+
+          if (( $(echo "$RESPONSE_TIME > 3" | bc -l) )); then
+            echo "- ⚠️ Slow response time" >> $GITHUB_STEP_SUMMARY
+            echo "::warning::Web app response time is slow: ${RESPONSE_TIME}s"
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Blog" >> $GITHUB_STEP_SUMMARY
+
+          # Test Blog
+          if curl -f -s -o /dev/null -w "%{http_code}" "$BLOG_URL" | grep -q "200"; then
+            echo "- ✅ Blog is accessible" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ Blog is not accessible" >> $GITHUB_STEP_SUMMARY
+            echo "::error::Blog smoke test failed"
+            exit 1
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Admin" >> $GITHUB_STEP_SUMMARY
+
+          # Test Admin
+          if curl -f -s -o /dev/null -w "%{http_code}" "$ADMIN_URL" | grep -q "200"; then
+            echo "- ✅ Admin is accessible" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ Admin is not accessible" >> $GITHUB_STEP_SUMMARY
+            echo "::error::Admin smoke test failed"
+            exit 1
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> ✅ All smoke tests passed!" >> $GITHUB_STEP_SUMMARY
+
+      - name: 📢 Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Smoke tests failed after deployment. Immediate attention required!"
+          # Add Slack/Discord notification here if needed

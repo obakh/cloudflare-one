@@ -1,0 +1,123 @@
+name: Bundle Size Check
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'apps/**'
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bundle-size:
+    name: 📦 Check Bundle Size
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build apps
+        run: pnpm build
+
+      - name: 📊 Analyze bundle sizes
+        run: |
+          echo "## 📦 Bundle Size Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Web app
+          if [ -d "apps/web/build" ]; then
+            WEB_SIZE=$(du -sh apps/web/build | cut -f1)
+            echo "### Web App: $WEB_SIZE" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            du -h apps/web/build/client/* | sort -h | tail -20 >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Blog
+          if [ -d "apps/blog/dist" ]; then
+            BLOG_SIZE=$(du -sh apps/blog/dist | cut -f1)
+            echo "### Blog: $BLOG_SIZE" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            du -h apps/blog/dist/_worker.js 2>/dev/null || echo "No worker bundle" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Admin
+          if [ -d "apps/admin/dist" ]; then
+            ADMIN_SIZE=$(du -sh apps/admin/dist | cut -f1)
+            echo "### Admin: $ADMIN_SIZE" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            du -h apps/admin/dist/_worker.js 2>/dev/null || echo "No worker bundle" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 💬 Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+
+            let comment = '## 📦 Bundle Size Report\n\n';
+
+            // Get sizes
+            const getSize = (path) => {
+              try {
+                return execSync(`du -sh ${path}`).toString().split('\t')[0];
+              } catch {
+                return 'N/A';
+              }
+            };
+
+            comment += `| App | Size |\n`;
+            comment += `|-----|------|\n`;
+            comment += `| Web | ${getSize('apps/web/build')} |\n`;
+            comment += `| Blog | ${getSize('apps/blog/dist')} |\n`;
+            comment += `| Admin | ${getSize('apps/admin/dist')} |\n`;
+
+            comment += '\n> 💡 Tip: Keep bundle sizes small for better performance\n';
+
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Bundle Size Report')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+            }

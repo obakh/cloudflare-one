@@ -1,0 +1,131 @@
+{
+	"type": "doc",
+	"content": [
+		{
+			"type": "heading",
+			"attrs": { "level": 1 },
+			"content": [{ "text": "Product Requirement Doc", "type": "text" }]
+		},
+		{
+			"type": "paragraph",
+			"content": [
+				{ "text": "💡 ", "type": "text" },
+				{
+					"text": "Tip:",
+					"type": "text",
+					"marks": [{ "type": "bold" }]
+				},
+				{
+					"text": " This template is intended to help teams plan, design and develop products with the greatest chance for success.",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 1 },
+			"content": [{ "text": "👀 Problem", "type": "text" }]
+		},
+		{
+			"type": "paragraph",
+			"content": [
+				{
+					"text": "Example questions to answer:",
+					"type": "text",
+					"marks": [{ "type": "bold" }]
+				},
+				{
+					"text": " What problem are we solving? For whom? When do they experience this issue?",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 1 },
+			"content": [{ "text": "💭 Proposal", "type": "text" }]
+		},
+		{
+			"type": "paragraph",
+			"content": [
+				{
+					"text": "Example questions to answer:",
+					"type": "text",
+					"marks": [{ "type": "bold" }]
+				},
+				{
+					"text": " How are we solving this issue? What alternatives did we consider?",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 1 },
+			"content": [{ "text": "🛫 Plan", "type": "text" }]
+		},
+		{
+			"type": "paragraph",
+			"content": [
+				{
+					"text": "Example questions to answer:",
+					"type": "text",
+					"marks": [{ "type": "bold" }]
+				},
+				{
+					"text": " What are we building? How does it work? When will it be ready?",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"type": "taskList",
+			"content": [
+				{
+					"type": "taskItem",
+					"attrs": { "checked": false },
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Internal alignment", "type": "text" }]
+						}
+					]
+				},
+				{
+					"type": "taskItem",
+					"attrs": { "checked": false },
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "External messaging", "type": "text" }]
+						}
+					]
+				},
+				{
+					"type": "taskItem",
+					"attrs": { "checked": false },
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Quality assurance", "type": "text" }]
+						}
+					]
+				},
+				{
+					"type": "taskItem",
+					"attrs": { "checked": false },
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Launch steps", "type": "text" }]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "paragraph",
+			"content": [{ "text": "🚀 It's go time!", "type": "text" }]
+		}
+	]
+}

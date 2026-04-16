@@ -1,0 +1,77 @@
+---
+title: Users
+description: User management endpoints
+---
+
+# Users API
+
+Endpoints for managing users.
+
+## Get Current User
+
+<ParamField path="GET" method="/api/users/me">
+  Get the currently authenticated user.
+</ParamField>
+
+### Response
+
+```json
+{
+  "data": {
+    "id": "user_123",
+    "email": "user@example.com",
+    "name": "John Doe",
+    "image": "https://example.com/avatar.jpg",
+    "createdAt": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+## Update User
+
+<ParamField path="PATCH" method="/api/users/me">
+  Update the current user's profile.
+</ParamField>
+
+### Request Body
+
+```json
+{
+  "name": "Jane Doe",
+  "image": "https://example.com/new-avatar.jpg"
+}
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "id": "user_123",
+    "email": "user@example.com",
+    "name": "Jane Doe",
+    "image": "https://example.com/new-avatar.jpg",
+    "createdAt": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+## Delete User
+
+<ParamField path="DELETE" method="/api/users/me">
+  Delete the current user's account.
+</ParamField>
+
+<Warning>
+  This action is irreversible. All user data will be permanently deleted.
+</Warning>
+
+### Response
+
+```json
+{
+  "data": {
+    "success": true
+  }
+}
+```

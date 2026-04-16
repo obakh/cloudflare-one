@@ -1,0 +1,131 @@
+{
+	"type": "doc",
+	"content": [
+		{
+			"type": "heading",
+			"attrs": { "level": 1 },
+			"content": [{ "text": "Meeting Notes", "type": "text" }]
+		},
+		{
+			"type": "paragraph",
+			"content": [
+				{ "text": "Date: ", "type": "text", "marks": [{ "type": "bold" }] },
+				{ "text": "[Date]", "type": "text" }
+			]
+		},
+		{
+			"type": "paragraph",
+			"content": [
+				{ "text": "Attendees: ", "type": "text", "marks": [{ "type": "bold" }] },
+				{ "text": "@name, @name", "type": "text" }
+			]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 2 },
+			"content": [{ "text": "Agenda", "type": "text" }]
+		},
+		{
+			"type": "orderedList",
+			"content": [
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Topic 1", "type": "text" }]
+						}
+					]
+				},
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Topic 2", "type": "text" }]
+						}
+					]
+				},
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Topic 3", "type": "text" }]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 2 },
+			"content": [{ "text": "Discussion", "type": "text" }]
+		},
+		{
+			"type": "paragraph",
+			"content": [{ "text": "Key points discussed during the meeting.", "type": "text" }]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 2 },
+			"content": [{ "text": "Action Items", "type": "text" }]
+		},
+		{
+			"type": "taskList",
+			"content": [
+				{
+					"type": "taskItem",
+					"attrs": { "checked": false },
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{ "text": "Action item 1 - ", "type": "text" },
+								{ "text": "@owner", "type": "text", "marks": [{ "type": "bold" }] }
+							]
+						}
+					]
+				},
+				{
+					"type": "taskItem",
+					"attrs": { "checked": false },
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{ "text": "Action item 2 - ", "type": "text" },
+								{ "text": "@owner", "type": "text", "marks": [{ "type": "bold" }] }
+							]
+						}
+					]
+				},
+				{
+					"type": "taskItem",
+					"attrs": { "checked": false },
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{ "text": "Action item 3 - ", "type": "text" },
+								{ "text": "@owner", "type": "text", "marks": [{ "type": "bold" }] }
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 2 },
+			"content": [{ "text": "Next Steps", "type": "text" }]
+		},
+		{
+			"type": "paragraph",
+			"content": [
+				{ "text": "Next meeting: ", "type": "text", "marks": [{ "type": "bold" }] },
+				{ "text": "[Date and Time]", "type": "text" }
+			]
+		}
+	]
+}

@@ -1,0 +1,88 @@
+---
+title: API Introduction
+description: Overview of the API
+---
+
+# API Reference
+
+Welcome to the API reference documentation.
+
+## Base URL
+
+```
+https://api.example.com
+```
+
+For local development:
+```
+http://localhost:5174/api
+```
+
+## Authentication
+
+All API requests require authentication using a Bearer token:
+
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN" \
+  https://api.example.com/users
+```
+
+## Response Format
+
+All responses are returned in JSON format:
+
+```json
+{
+  "data": { ... },
+  "error": null
+}
+```
+
+Error responses:
+
+```json
+{
+  "data": null,
+  "error": {
+    "code": "UNAUTHORIZED",
+    "message": "Invalid or expired token"
+  }
+}
+```
+
+## Rate Limiting
+
+API requests are rate limited to:
+
+- 100 requests per minute for authenticated users
+- 10 requests per minute for unauthenticated requests
+
+Rate limit headers are included in responses:
+
+```
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 95
+X-RateLimit-Reset: 1640000000
+```
+
+## Pagination
+
+List endpoints support pagination:
+
+```bash
+GET /api/users?page=1&limit=20
+```
+
+Response includes pagination metadata:
+
+```json
+{
+  "data": [...],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 100,
+    "totalPages": 5
+  }
+}
+```

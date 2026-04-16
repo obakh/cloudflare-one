@@ -1,0 +1,28 @@
+{
+	"name": "@repo/security",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"check-types": "tsc --noEmit",
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"exports": {
+		".": "./src/index.ts",
+		"./turnstile": "./src/turnstile/index.ts",
+		"./headers": "./src/headers/index.ts",
+		"./rate-limit": "./src/rate-limit/index.ts",
+		"./rate-limit/durable-object": "./src/rate-limit/durable-object.ts",
+		"./crypto": "./src/crypto/index.ts",
+		"./encryption": "./src/encryption/index.ts"
+	},
+	"dependencies": {
+		"hono": "^4.7.4"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20241230.0",
+		"typescript": "^5.7.0",
+		"vitest": "^2.1.8"
+	}
+}

@@ -1,0 +1,77 @@
+---
+title: Deployment
+description: Deploy your application to production
+---
+
+# Deployment
+
+This guide covers deploying the application to Cloudflare.
+
+## Prerequisites
+
+- A Cloudflare account
+- Wrangler CLI installed (`pnpm add -g wrangler`)
+- Your environment variables ready
+
+## Cloudflare Workers
+
+The apps are configured to deploy to Cloudflare Workers.
+
+### Setup
+
+1. Login to Cloudflare:
+```bash
+wrangler login
+```
+
+2. Create a D1 database:
+```bash
+wrangler d1 create your-database
+```
+
+3. Update `wrangler.toml` with your database ID.
+
+### Deploy
+
+Deploy individual apps:
+
+```bash
+# Deploy the main app
+pnpm --filter @repo/app deploy
+
+# Deploy the admin panel
+pnpm --filter @repo/admin deploy
+
+# Deploy the blog
+pnpm --filter @repo/blog deploy
+```
+
+Or deploy all at once:
+
+```bash
+pnpm deploy
+```
+
+## Environment Variables
+
+Set production environment variables in the Cloudflare dashboard or via wrangler:
+
+```bash
+wrangler secret put DATABASE_URL
+wrangler secret put BETTER_AUTH_SECRET
+```
+
+## Custom Domains
+
+1. Go to your Cloudflare dashboard
+2. Navigate to Workers & Pages > Your Worker
+3. Click "Custom Domains"
+4. Add your domain
+
+## Monitoring
+
+Use Cloudflare's built-in analytics and logging:
+
+- Workers Analytics for request metrics
+- Tail logs for real-time debugging
+- Error tracking integration (optional)

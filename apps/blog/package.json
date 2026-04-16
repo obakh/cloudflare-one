@@ -1,0 +1,40 @@
+{
+	"name": "@repo/blog",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev --port 4321",
+		"build": "astro build",
+		"preview": "astro build && wrangler dev",
+		"deploy": "wrangler deploy",
+		"versions:upload": "wrangler versions upload",
+		"versions:deploy": "wrangler versions deploy",
+		"cf-typegen": "wrangler types",
+		"check": "astro build && wrangler deploy --dry-run",
+		"check-types": "astro check",
+		"clean": "rimraf dist .astro node_modules"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.9.6",
+		"@astrojs/cloudflare": "12.6.12",
+		"@astrojs/mdx": "4.3.12",
+		"@astrojs/react": "4.3.1",
+		"@astrojs/rss": "4.0.14",
+		"@astrojs/sitemap": "3.6.0",
+		"@astrojs/tailwind": "6.0.2",
+		"@repo/ui": "workspace:*",
+		"astro": "5.16.2",
+		"lucide-react": "^0.468.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tailwindcss": "^3.4.17"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.0",
+		"@types/react-dom": "^19.0.0",
+		"rimraf": "^6.0.0",
+		"tailwindcss-animate": "^1.0.7",
+		"typescript": "^5.7.0",
+		"wrangler": "4.56.0"
+	}
+}
