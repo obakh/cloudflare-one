@@ -80,7 +80,7 @@ jobs:
           command: versions upload
 
       - name: 💬 Comment on PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const url = '${{ steps.deploy.outputs.deployment-url }}';
@@ -130,7 +130,7 @@ jobs:
           command: versions upload
 
       - name: 💬 Comment on PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const url = '${{ steps.deploy.outputs.deployment-url }}';
@@ -180,7 +180,7 @@ jobs:
           command: versions upload
 
       - name: 💬 Comment on PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const url = '${{ steps.deploy.outputs.deployment-url }}';
