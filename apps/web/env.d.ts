@@ -1,5 +1,7 @@
 /// <reference types="@react-router/dev/vite" />
 
 declare module "virtual:react-router/server-build" {
-	export * from "react-router";
+	import type { ServerBuild } from "react-router";
+	const build: ServerBuild;
+	export { build as default };
 }
