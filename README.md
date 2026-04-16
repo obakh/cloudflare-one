@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/obakh/cloudflare-one/actions/workflows/ci.yml/badge.svg)](https://github.com/obakh/cloudflare-one/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/obakh/cloudflare-one?style=social)](https://github.com/obakh/cloudflare-one/stargazers)
 [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg)](https://pnpm.io/)
 [![Turborepo](https://img.shields.io/badge/built%20with-Turborepo-ef4444.svg)](https://turbo.build/repo)
 
@@ -358,3 +359,15 @@ See [docs/testing.md](docs/testing.md) for comprehensive testing guide including
 - [docs/testing.md](./docs/testing.md) - Testing guide
 - [docs/deployment.md](./docs/deployment.md) - Deployment strategies
 - [docs/](./docs/) - Additional documentation for features
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=obakh/cloudflare-one&type=Date)](https://star-history.com/#obakh/cloudflare-one&Date)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+---
+
+**Made with ❤️ for the Cloudflare community** | [Report Bug](https://github.com/obakh/cloudflare-one/issues) | [Request Feature](https://github.com/obakh/cloudflare-one/issues)
