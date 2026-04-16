@@ -1,6 +1,10 @@
 # Cloudflare One
 
 [![CI](https://github.com/obakh/cloudflare-one/actions/workflows/ci.yml/badge.svg)](https://github.com/obakh/cloudflare-one/actions/workflows/ci.yml)
+[![Deploy Web](https://github.com/obakh/cloudflare-one/actions/workflows/deploy-web.yml/badge.svg)](https://github.com/obakh/cloudflare-one/actions/workflows/deploy-web.yml)
+[![Deploy Admin](https://github.com/obakh/cloudflare-one/actions/workflows/deploy-admin.yml/badge.svg)](https://github.com/obakh/cloudflare-one/actions/workflows/deploy-admin.yml)
+[![Deploy Blog](https://github.com/obakh/cloudflare-one/actions/workflows/deploy-blog.yml/badge.svg)](https://github.com/obakh/cloudflare-one/actions/workflows/deploy-blog.yml)
+[![Deploy App](https://github.com/obakh/cloudflare-one/actions/workflows/deploy-app.yml/badge.svg)](https://github.com/obakh/cloudflare-one/actions/workflows/deploy-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/obakh/cloudflare-one?style=social)](https://github.com/obakh/cloudflare-one/stargazers)
 [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg)](https://pnpm.io/)
