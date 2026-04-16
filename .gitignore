@@ -56,6 +56,13 @@ _temp/
 # Scripts
 *.ps1
 delete-*.ps1
+generate-icons.js
+generate-proper-icons.js
+generate-proper-icons.mjs
+
+# Tauri / Rust
+apps/desktop/src-tauri/target/
+apps/desktop/src-tauri/Cargo.lock
 
 # IDE additional
 *~

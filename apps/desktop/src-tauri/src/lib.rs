@@ -253,13 +253,6 @@ pub fn run() {
         .build(tauri::generate_context!())
         .expect("error while building tauri app")
         .run(|app_handle, event| match event {
-            // Handle dock icon click on macOS
-            tauri::RunEvent::Reopen { .. } => {
-                if let Some(window) = app_handle.get_webview_window("main") {
-                    let _ = window.show();
-                    let _ = window.set_focus();
-                }
-            }
             // Keep app running in background when window is closed
             tauri::RunEvent::ExitRequested { api, .. } => {
                 api.prevent_exit();

@@ -407,6 +407,47 @@ To use custom domains with your Cloudflare Workers:
 - `blog.monorepo.cc` → Blog
 - `admin.monorepo.cc` → Admin dashboard
 
+### Desktop App Releases
+
+The desktop app is automatically built and released for Windows, macOS, and Linux when you push a tag.
+
+#### Creating a Release
+
+1. **Update the version** in `apps/desktop/src-tauri/tauri.conf.json`:
+   ```json
+   {
+     "version": "0.2.0"
+   }
+   ```
+
+2. **Commit the version change**:
+   ```bash
+   git add apps/desktop/src-tauri/tauri.conf.json
+   git commit -m "chore: bump desktop app to v0.2.0"
+   ```
+
+3. **Create and push a tag**:
+   ```bash
+   git tag desktop-v0.2.0
+   git push origin desktop-v0.2.0
+   ```
+
+4. **GitHub Actions will automatically**:
+   - Build the app for Windows (MSI + NSIS installers)
+   - Build the app for macOS (DMG for Intel and Apple Silicon)
+   - Build the app for Linux (AppImage + DEB)
+   - Create a GitHub Release with all installers
+   - Attach release notes and download instructions
+
+#### Release Artifacts
+
+After the workflow completes, users can download:
+- **Windows**: `Desktop.App_x64-setup.exe` or `Desktop.App_x64_en-US.msi`
+- **macOS**: `Desktop.App_aarch64.dmg` (Apple Silicon) or `Desktop.App_x64.dmg` (Intel)
+- **Linux**: `Desktop.App.AppImage` or `Desktop.App_amd64.deb`
+
+The release will be available at: `https://github.com/obakh/cloudflare-one/releases`
+
 ## Monitoring with Sentry
 
 See [docs/sentry-setup.md](docs/sentry-setup.md) for instructions on setting up Sentry integration for traces and logs.
