@@ -15,7 +15,7 @@
 		"./d1": "./src/d1/index.ts"
 	},
 	"dependencies": {
-		"drizzle-orm": "^0.44.4",
+		"drizzle-orm": "^0.45.2",
 		"pg": "^8.13.1"
 	},
 	"devDependencies": {
