@@ -41,9 +41,7 @@ export function Footer() {
 						<span className="sr-only">Logo</span>
 					</Link>
 
-					<span className="font-normal md:text-2xl text-right">
-						Your tagline goes here.
-					</span>
+					<span className="font-normal md:text-2xl text-right">Your tagline goes here.</span>
 				</div>
 
 				{/* Links Section */}
@@ -54,7 +52,10 @@ export function Footer() {
 							<span className="font-medium">Features</span>
 							<ul>
 								{footerLinks.features.map((link) => (
-									<li key={link.path} className="text-muted-foreground hover:text-foreground transition-colors">
+									<li
+										key={link.path}
+										className="text-muted-foreground hover:text-foreground transition-colors"
+									>
 										<Link to={link.path}>{link.title}</Link>
 									</li>
 								))}
@@ -66,7 +67,10 @@ export function Footer() {
 							<span className="font-medium">Resources</span>
 							<ul>
 								{footerLinks.resources.map((link) => (
-									<li key={link.path} className="text-muted-foreground hover:text-foreground transition-colors">
+									<li
+										key={link.path}
+										className="text-muted-foreground hover:text-foreground transition-colors"
+									>
 										<Link to={link.path}>{link.title}</Link>
 									</li>
 								))}
@@ -78,7 +82,10 @@ export function Footer() {
 							<span className="font-medium">Company</span>
 							<ul>
 								{footerLinks.company.map((link) => (
-									<li key={link.path} className="text-muted-foreground hover:text-foreground transition-colors">
+									<li
+										key={link.path}
+										className="text-muted-foreground hover:text-foreground transition-colors"
+									>
 										<Link to={link.path}>{link.title}</Link>
 									</li>
 								))}

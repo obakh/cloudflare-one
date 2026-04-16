@@ -16,7 +16,7 @@ export function meta() {
 		{ title: "Your Product | Your Tagline" },
 		{
 			name: "description",
-			content: "Your product description. Explain what your product does and how it helps users."
+			content: "Your product description. Explain what your product does and how it helps users.",
 		},
 	];
 }

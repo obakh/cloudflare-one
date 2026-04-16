@@ -34,8 +34,10 @@ const itemVariant = {
 	show: { opacity: 1 },
 };
 
-// App URL - in production this would be your app domain
+// App URLs - in production these would be your actual domains
 const APP_URL = "http://localhost:5174";
+const BLOG_URL = "http://localhost:4321";
+const DOCS_URL = "http://localhost:3004";
 
 export function Header() {
 	const location = useLocation();
@@ -75,87 +77,89 @@ export function Header() {
 
 	const links = [
 		{
-			title: "Features",
+			title: "Product",
 			cover: (
 				<div className="bg-muted aspect-video rounded flex items-center justify-center">
-					<span className="text-muted-foreground text-sm">Feature Image</span>
+					<span className="text-muted-foreground text-sm">Product Image</span>
 				</div>
 			),
 			children: [
 				{
-					path: "/overview",
+					path: "/",
 					title: "Overview",
 					icon: <LayoutDashboard size={20} />,
 				},
 				{
-					path: "/inbox",
-					title: "Inbox",
+					path: "/features",
+					title: "Features",
 					icon: <Box size={20} />,
 				},
 				{
-					path: "/vault",
-					title: "Vault",
+					path: "/integrations",
+					title: "Integrations",
+					icon: <Puzzle size={20} />,
+				},
+				{
+					path: "/security",
+					title: "Security",
 					icon: <FolderOpen size={20} />,
 				},
 				{
-					path: "/tracker",
-					title: "Tracker",
+					path: "/changelog",
+					title: "Changelog",
 					icon: <Timer size={20} />,
 				},
-				{
-					path: "/invoice",
-					title: "Invoice",
-					icon: <Receipt size={20} />,
-				},
 			],
+		},
+		{
+			title: "Solutions",
+			path: "/solutions",
 		},
 		{
 			title: "Pricing",
 			path: "/pricing",
 		},
 		{
-			title: "Updates",
-			path: "/updates",
+			title: "Company",
+			path: "/company",
 		},
 		{
-			title: "Story",
-			path: "/story",
+			title: "Blog",
+			path: BLOG_URL,
+			external: true,
 		},
 		{
-			title: "Download",
-			path: "/download",
-		},
-		{
-			title: "Developers",
+			title: "Resources",
 			cover: (
 				<div className="bg-muted aspect-video rounded flex items-center justify-center">
-					<span className="text-muted-foreground text-sm">Developer Image</span>
+					<span className="text-muted-foreground text-sm">Resources Image</span>
 				</div>
 			),
 			children: [
 				{
-					path: "/github",
-					title: "Open Source",
-					icon: <Github size={19} />,
-				},
-				{
-					path: "/docs",
+					path: DOCS_URL,
 					title: "Documentation",
 					icon: <BookOpen size={20} />,
+					external: true,
 				},
 				{
-					path: "/engine",
-					title: "Engine",
+					path: "/guides",
+					title: "Guides",
+					icon: <Receipt size={20} />,
+				},
+				{
+					path: "/api",
+					title: "API Reference",
 					icon: <Cpu size={20} />,
 				},
 				{
-					title: "Apps & Integrations",
-					path: "/integrations",
-					icon: <Puzzle size={20} />,
+					path: "/support",
+					title: "Support",
+					icon: <Github size={19} />,
 				},
 				{
-					path: "/components",
-					title: "Components",
+					path: "/community",
+					title: "Community",
 					icon: <Component size={20} />,
 				},
 			],
@@ -184,8 +188,22 @@ export function Header() {
 				</Link>
 
 				<ul className="space-x-2 font-medium text-sm hidden md:flex mx-3">
-					{links.map(({ path, title, children, cover }) => {
+					{links.map(({ path, title, children, cover, external }) => {
 						if (path) {
+							if (external) {
+								return (
+									<li key={path}>
+										<a
+											href={path}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="h-8 items-center justify-center text-sm font-medium px-3 py-2 inline-flex text-secondary-foreground transition-opacity hover:opacity-70 duration-200"
+										>
+											{title}
+										</a>
+									</li>
+								);
+							}
 							return (
 								<li key={path}>
 									<Link
@@ -219,6 +237,21 @@ export function Header() {
 									>
 										<ul className="p-4 w-[200px] flex-shrink-0 space-y-4 mt-2">
 											{children.map((child) => {
+												if (child.external) {
+													return (
+														<li key={child.path}>
+															<a
+																href={child.path}
+																target="_blank"
+																rel="noopener noreferrer"
+																className="flex space-x-2 items-center transition-opacity hover:opacity-70 duration-200"
+															>
+																<span>{child.icon}</span>
+																<span className="text-sm font-medium">{child.title}</span>
+															</a>
+														</li>
+													);
+												}
 												return (
 													<li key={child.path}>
 														<Link
@@ -307,11 +340,24 @@ export function Header() {
 							className="px-3 pt-8 text-xl text-[#878787] space-y-8 mb-8 overflow-auto"
 							variants={listVariant}
 						>
-							{links.map(({ path, title, children }) => {
-								const isActive =
-									path === "/updates" ? pathname.includes("updates") : path === lastPath;
+							{links.map(({ path, title, children, external }) => {
+								const isActive = path === BLOG_URL ? pathname.includes("blog") : path === lastPath;
 
 								if (path) {
+									if (external) {
+										return (
+											<motion.li variants={itemVariant} key={path}>
+												<a
+													href={path}
+													target="_blank"
+													rel="noopener noreferrer"
+													className={cn(isActive && "text-primary")}
+												>
+													{title}
+												</a>
+											</motion.li>
+										);
+									}
 									return (
 										<motion.li variants={itemVariant} key={path}>
 											<Link
@@ -337,6 +383,20 @@ export function Header() {
 													<AccordionContent className="text-xl">
 														<ul className="space-y-8 ml-4 mt-6">
 															{children.map((child) => {
+																if (child.external) {
+																	return (
+																		<li key={child.path}>
+																			<a
+																				href={child.path}
+																				target="_blank"
+																				rel="noopener noreferrer"
+																				className="text-[#878787]"
+																			>
+																				{child.title}
+																			</a>
+																		</li>
+																	);
+																}
 																return (
 																	<li key={child.path}>
 																		<Link

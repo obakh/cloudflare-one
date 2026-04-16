@@ -1,22 +1,13 @@
 import { Button } from "@repo/ui/button";
 import { Input } from "@repo/ui/input";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@repo/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ui/select";
 import { Textarea } from "@repo/ui/textarea";
 import { useToast } from "@repo/ui/use-toast";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 
 export function meta() {
-	return [
-		{ title: "Support" },
-		{ name: "description", content: "Get help with Midday" },
-	];
+	return [{ title: "Support" }, { name: "description", content: "Get help with Midday" }];
 }
 
 export default function Support() {
@@ -54,7 +45,7 @@ export default function Support() {
 				priority: "",
 				message: "",
 			});
-		} catch (error) {
+		} catch (_error) {
 			toast({
 				duration: 3500,
 				variant: "destructive",
@@ -67,14 +58,15 @@ export default function Support() {
 
 	return (
 		<div className="max-w-[750px] m-auto">
-			<h1 className="mt-24 font-medium text-center text-5xl mb-16 leading-snug">
-				Support
-			</h1>
+			<h1 className="mt-24 font-medium text-center text-5xl mb-16 leading-snug">Support</h1>
 
 			<form onSubmit={handleSubmit} className="space-y-8">
 				<div className="flex space-x-4">
 					<div className="w-full">
-						<label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+						<label
+							htmlFor="email"
+							className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+						>
 							Email
 						</label>
 						<Input
@@ -89,7 +81,10 @@ export default function Support() {
 					</div>
 
 					<div className="w-full">
-						<label htmlFor="fullName" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+						<label
+							htmlFor="fullName"
+							className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+						>
 							Full Name
 						</label>
 						<Input
@@ -105,7 +100,10 @@ export default function Support() {
 				</div>
 
 				<div>
-					<label htmlFor="subject" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+					<label
+						htmlFor="subject"
+						className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+					>
 						Subject
 					</label>
 					<Input
@@ -121,7 +119,10 @@ export default function Support() {
 
 				<div className="flex space-x-4">
 					<div className="w-full">
-						<label htmlFor="type" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+						<label
+							htmlFor="type"
+							className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+						>
 							Product
 						</label>
 						<Select
@@ -144,7 +145,10 @@ export default function Support() {
 					</div>
 
 					<div className="w-full">
-						<label htmlFor="priority" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+						<label
+							htmlFor="priority"
+							className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+						>
 							Severity
 						</label>
 						<Select
@@ -165,7 +169,10 @@ export default function Support() {
 				</div>
 
 				<div>
-					<label htmlFor="message" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+					<label
+						htmlFor="message"
+						className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+					>
 						Message
 					</label>
 					<Textarea
