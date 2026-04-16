@@ -33,7 +33,7 @@
 		"@cloudflare/vitest-pool-workers": "^0.8.0",
 		"@repo/config": "workspace:*",
 		"@react-router/dev": "7.9.6",
-		"@types/node": "24.10.1",
+		"@types/node": "25.6.0",
 		"@types/react": "^19.0.0",
 		"@types/react-dom": "^19.0.0",
 		"autoprefixer": "^10.4.21",
