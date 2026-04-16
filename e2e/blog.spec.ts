@@ -12,7 +12,7 @@ test.describe("Blog App (@repo/blog)", () => {
 		// Check navigation links
 		await expect(page.getByRole("link", { name: "Home" })).toBeVisible();
 		await expect(page.getByRole("link", { name: "Blog", exact: true })).toBeVisible();
-		await expect(page.getByRole("link", { name: "About" })).toBeVisible();
+		await expect(page.getByRole("link", { name: "About", exact: true }).first()).toBeVisible();
 
 		// Check welcome heading
 		await expect(page.getByRole("heading", { name: "Welcome to My Blog" })).toBeVisible();
@@ -31,8 +31,8 @@ test.describe("Blog App (@repo/blog)", () => {
 	test("should navigate to about page", async ({ page }) => {
 		await page.goto(BLOG_URL);
 
-		// Click on About link
-		await page.getByRole("link", { name: "About" }).click();
+		// Click on About link in header (first one)
+		await page.getByRole("link", { name: "About", exact: true }).first().click();
 
 		// Should show about page content
 		await expect(page.getByRole("heading", { name: "About Me" })).toBeVisible();

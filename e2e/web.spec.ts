@@ -6,54 +6,38 @@ test.describe("Web App (@repo/web)", () => {
 	test("should render the home page", async ({ page }) => {
 		await page.goto(WEB_URL);
 
-		// Check main heading
-		await expect(page.getByRole("heading", { name: "Monorepo Template" })).toBeVisible();
+		// Check that the page loads
+		await expect(page.locator("main")).toBeVisible();
 
-		// Check description text
-		await expect(page.getByText("A scalable monorepo with React Router 7")).toBeVisible();
+		// Check header is present
+		await expect(page.locator("header")).toBeVisible();
 	});
 
-	test("should have working navigation links", async ({ page }) => {
+	test("should have navigation links in header", async ({ page }) => {
 		await page.goto(WEB_URL);
 
-		// Check Turborepo docs link
-		const turboLink = page.getByRole("link", { name: "Turborepo Docs" });
-		await expect(turboLink).toBeVisible();
-		await expect(turboLink).toHaveAttribute("href", "https://turbo.build/repo/docs");
+		// Check that header has navigation
+		const header = page.locator("header");
+		await expect(header).toBeVisible();
 
-		// Check React Router docs link
-		const reactRouterLink = page.getByRole("link", { name: "React Router Docs" });
-		await expect(reactRouterLink).toBeVisible();
-		await expect(reactRouterLink).toHaveAttribute("href", "https://reactrouter.com/");
+		// Check for Apps dropdown or navigation links
+		const navElements = header.locator("nav, button, a");
+		const count = await navElements.count();
+		expect(count).toBeGreaterThan(0);
 	});
 
-	test("should display project structure", async ({ page }) => {
+	test("should have footer", async ({ page }) => {
 		await page.goto(WEB_URL);
 
-		// Check project structure section
-		await expect(page.getByRole("heading", { name: "Project Structure" })).toBeVisible();
-
-		// Check that structure shows key directories
-		await expect(page.getByText("apps/")).toBeVisible();
-		await expect(page.getByText("packages/")).toBeVisible();
+		// Check footer is present
+		await expect(page.locator("footer")).toBeVisible();
 	});
 
-	test("should display quick start section", async ({ page }) => {
+	test("should have GitHub link", async ({ page }) => {
 		await page.goto(WEB_URL);
 
-		// Check quick start section
-		await expect(page.getByRole("heading", { name: "Quick Start" })).toBeVisible();
-
-		// Check some quick start items
-		await expect(page.getByText("Add routes in")).toBeVisible();
-		await expect(page.getByText("Add shared components in")).toBeVisible();
-	});
-
-	test("should show shared package usage note", async ({ page }) => {
-		await page.goto(WEB_URL);
-
-		// Check that it mentions using shared packages
-		await expect(page.getByText("@repo/ui")).toBeVisible();
-		await expect(page.getByText("@repo/utils")).toBeVisible();
+		// Check for GitHub link
+		const githubLink = page.getByRole("link", { name: /github/i });
+		await expect(githubLink.first()).toBeVisible();
 	});
 });

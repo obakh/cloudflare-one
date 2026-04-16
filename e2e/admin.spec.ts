@@ -12,13 +12,24 @@ test.describe("Admin App", () => {
 		// Check page title
 		await expect(page.locator("h2")).toContainText("Dashboard");
 
-		// Check navigation links
-		await expect(page.locator("nav")).toContainText("Dashboard");
-		await expect(page.locator("nav")).toContainText("Settings");
+		// Hover over sidebar to expand it
+		await page.locator("aside").hover();
+
+		// Wait for expansion animation
+		await page.waitForTimeout(300);
+
+		// Check navigation links are present (they're in the nav element)
+		const nav = page.locator("nav");
+		await expect(nav.locator('a[href="/admin"]')).toBeVisible();
+		await expect(nav.locator('a[href="/admin/settings"]')).toBeVisible();
 	});
 
 	test("navigates to settings page", async ({ page }) => {
 		await page.goto("http://localhost:4322/admin");
+
+		// Hover to expand sidebar
+		await page.locator("aside").hover();
+		await page.waitForTimeout(300);
 
 		await page.click('a[href="/admin/settings"]');
 
