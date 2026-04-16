@@ -16,9 +16,9 @@ export function SocialLinks() {
 			</li>
 			<li>
 				<a
+					href="https://github.com/obakh/cloudflare-one"
 					target="_blank"
 					rel="noreferrer"
-					href="https://github.com"
 					className="text-[#878787] hover:text-foreground transition-colors"
 				>
 					<span className="sr-only">Github</span>

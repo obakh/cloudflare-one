@@ -333,6 +333,51 @@ import { createServerAnalytics } from "@repo/analytics/server";
 
 ## Deployment
 
+### Automatic Deployment with GitHub Actions
+
+This monorepo is configured with **GitHub Actions** for automatic deployment to Cloudflare Workers. Every push to the `main` branch triggers automated deployments for all apps.
+
+#### How It Works
+
+1. **Push to main branch** → GitHub Actions automatically runs
+2. **CI Pipeline** runs tests and type checks
+3. **Deployment Workflows** deploy each app to Cloudflare Workers:
+   - `deploy-web.yml` → Deploys the main web app
+   - `deploy-app.yml` → Deploys the secondary app
+   - `deploy-blog.yml` → Deploys the blog
+   - `deploy-admin.yml` → Deploys the admin dashboard
+
+#### Setting Up GitHub Secrets
+
+To enable automatic deployments, you need to add two secrets to your GitHub repository:
+
+**1. Get your Cloudflare API Token:**
+   - Go to [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens)
+   - Click "Create Token"
+   - Use the "Edit Cloudflare Workers" template
+   - Or create a custom token with these permissions:
+     - Account > Cloudflare Workers Scripts > Edit
+     - Account > Account Settings > Read
+   - Copy the generated token
+
+**2. Get your Cloudflare Account ID:**
+   - Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
+   - Select any website or go to Workers & Pages
+   - Your Account ID is displayed on the right sidebar
+   - Or find it in the URL: `dash.cloudflare.com/<ACCOUNT_ID>/...`
+
+**3. Add secrets to GitHub:**
+   - Go to your GitHub repository
+   - Navigate to **Settings** → **Secrets and variables** → **Actions**
+   - Click **New repository secret**
+   - Add these two secrets:
+     - Name: `CLOUDFLARE_API_TOKEN` | Value: `<your-api-token>`
+     - Name: `CLOUDFLARE_ACCOUNT_ID` | Value: `<your-account-id>`
+
+#### Manual Deployment
+
+You can also deploy manually using the CLI:
+
 ```bash
 # Deploy all apps
 pnpm --filter "./apps/*" deploy
@@ -341,7 +386,26 @@ pnpm --filter "./apps/*" deploy
 pnpm --filter @repo/web deploy
 pnpm --filter @repo/blog deploy
 pnpm --filter @repo/admin deploy
+pnpm --filter @repo/app deploy
 ```
+
+#### Custom Domains
+
+To use custom domains with your Cloudflare Workers:
+
+1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
+2. Navigate to **Workers & Pages**
+3. Select your deployed worker
+4. Go to **Settings** → **Domains & Routes**
+5. Click **Add Custom Domain**
+6. Enter your subdomain (e.g., `app.yourdomain.com`)
+7. Cloudflare will automatically configure DNS
+
+**Example setup:**
+- `monorepo.cc` → Main web app
+- `app.monorepo.cc` → Secondary app
+- `blog.monorepo.cc` → Blog
+- `admin.monorepo.cc` → Admin dashboard
 
 ## Monitoring with Sentry
 

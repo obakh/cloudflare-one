@@ -12,7 +12,7 @@ const footerLinks = {
 		{ title: "Download", path: "/download" },
 	],
 	resources: [
-		{ title: "GitHub", path: "/github" },
+		{ title: "GitHub", path: "https://github.com/obakh/cloudflare-one" },
 		{ title: "Support", path: "/support" },
 		{ title: "Privacy Policy", path: "/privacy" },
 		{ title: "Terms", path: "/terms" },
@@ -99,7 +99,9 @@ export function Footer() {
 							<div className="flex items-start md:items-center flex-col md:flex-row space-y-6 md:space-y-0 mb-8">
 								{/* GitHub stars placeholder */}
 								<a
-									href="https://github.com"
+									href="https://github.com/obakh/cloudflare-one"
+									target="_blank"
+									rel="noreferrer"
 									className="flex items-center space-x-2 border border-border px-4 py-2 text-sm mr-4"
 								>
 									<span>⭐ Star us on GitHub</span>
