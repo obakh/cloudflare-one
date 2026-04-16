@@ -239,7 +239,7 @@ We use **Conventional Commits** enforced by commitlint.
 
 Apps: `web`, `app`, `blog`, `admin`, `docs`, `storybook`, `desktop`
 
-Packages: `ui`, `auth`, `db`, `ai`, `payments`, `analytics`, `i18n`, `config`, `utils`
+Packages: `ui`, `auth`, `db`, `ai`, `analytics`, `chat`, `config`, `editor`, `embed`, `experiments`, `feature-flags`, `i18n`, `import`, `inbox`, `integrations`, `invoice`, `location`, `media`, `notifications`, `observability`, `payments`, `scheduling`, `security`, `seo`, `storage`, `utils`, `workflows`
 
 Meta: `deps`, `ci`, `release`, `monorepo`
 
@@ -318,19 +318,41 @@ If hooks fail, fix the issues and commit again.
 
 ```
 ├── apps/                    # Applications
-│   ├── web/                # Main React Router app
-│   ├── blog/               # Astro blog
-│   ├── admin/              # Admin dashboard
-│   ├── app/                # Secondary app
-│   ├── desktop/            # Tauri desktop app
-│   ├── docs/               # Mintlify docs
-│   └── storybook/          # Component library docs
-├── packages/               # Shared packages
-│   ├── ui/                 # React components
-│   ├── auth/               # Authentication
-│   ├── db/                 # Database utilities
+│   ├── web/                # Main React Router app + Cloudflare Workers
+│   ├── app/                # Secondary React Router app
+│   ├── blog/               # Astro blog with MDX
+│   ├── admin/              # Admin dashboard - Astro + React
+│   ├── desktop/            # Tauri desktop application
+│   ├── docs/               # Mintlify documentation site
+│   └── storybook/          # Component library documentation
+├── packages/               # Shared packages (27 total)
+│   ├── ai/                 # Workers AI integration
+│   ├── analytics/          # Analytics + Consent management
+│   ├── auth/               # Better Auth + Drizzle ORM
+│   ├── chat/               # Real-time chat functionality
+│   ├── config/             # Shared TypeScript configs
+│   ├── db/                 # PostgreSQL + Drizzle helpers
+│   ├── editor/             # Rich text editor components
+│   ├── embed/              # Embeddable widgets
+│   ├── experiments/        # A/B testing framework
+│   ├── feature-flags/      # Feature flag management
+│   ├── i18n/               # Internationalization
+│   ├── import/             # Data import utilities
+│   ├── inbox/              # Inbox/messaging system
+│   ├── integrations/       # Third-party integrations
+│   ├── invoice/            # Invoice generation
+│   ├── location/           # Geolocation services
+│   ├── media/              # Media processing
+│   ├── notifications/      # Email + Queues
+│   ├── observability/      # Sentry + monitoring
+│   ├── payments/           # Payment processing
+│   ├── scheduling/         # Cron triggers
+│   ├── security/           # Turnstile + Headers + Rate Limit
+│   ├── seo/                # SEO + Prerendering
+│   ├── storage/            # R2 + storage helpers
+│   ├── ui/                 # Shared React components
 │   ├── utils/              # Shared utilities
-│   └── ...                 # 20+ other packages
+│   └── workflows/          # Cloudflare Workflows
 ├── e2e/                    # Playwright E2E tests
 ├── docs/                   # Documentation
 ├── .github/                # GitHub workflows

@@ -28,23 +28,41 @@ A scalable full-stack monorepo with React Router 7 + Cloudflare Workers, powered
 
 ```
 ├── apps/
-│   ├── web/                 # React Router + Cloudflare Workers (port 5173)
-│   ├── blog/                # Astro blog (port 4321)
-│   └── admin/               # Admin dashboard (port 4322)
+│   ├── web/                 # Main React Router app + Cloudflare Workers (port 5173)
+│   ├── app/                 # Secondary React Router app (port 5174)
+│   ├── blog/                # Astro blog with MDX (port 4321)
+│   ├── admin/               # Admin dashboard - Astro + React (port 4322)
+│   ├── desktop/             # Tauri desktop application
+│   ├── docs/                # Mintlify documentation site
+│   └── storybook/           # Component library documentation
 ├── packages/
-│   ├── analytics/           # Analytics + Consent (@repo/analytics)
-│   ├── auth/                # Better Auth + Drizzle (@repo/auth)
+│   ├── ai/                  # Workers AI integration (@repo/ai)
+│   ├── analytics/           # Analytics + Consent management (@repo/analytics)
+│   ├── auth/                # Better Auth + Drizzle ORM (@repo/auth)
+│   ├── chat/                # Real-time chat functionality (@repo/chat)
+│   ├── config/              # Shared TypeScript configs (@repo/config)
 │   ├── db/                  # PostgreSQL + Drizzle helpers (@repo/db)
+│   ├── editor/              # Rich text editor components (@repo/editor)
+│   ├── embed/               # Embeddable widgets (@repo/embed)
+│   ├── experiments/         # A/B testing framework (@repo/experiments)
+│   ├── feature-flags/       # Feature flag management (@repo/feature-flags)
 │   ├── i18n/                # Internationalization (@repo/i18n)
+│   ├── import/              # Data import utilities (@repo/import)
+│   ├── inbox/               # Inbox/messaging system (@repo/inbox)
+│   ├── integrations/        # Third-party integrations (@repo/integrations)
+│   ├── invoice/             # Invoice generation (@repo/invoice)
+│   ├── location/            # Geolocation services (@repo/location)
+│   ├── media/               # Media processing (@repo/media)
 │   ├── notifications/       # Email + Queues (@repo/notifications)
 │   ├── observability/       # Sentry + monitoring (@repo/observability)
+│   ├── payments/            # Payment processing (@repo/payments)
 │   ├── scheduling/          # Cron triggers (@repo/scheduling)
 │   ├── security/            # Turnstile + Headers + Rate Limit (@repo/security)
 │   ├── seo/                 # SEO + Prerendering (@repo/seo)
 │   ├── storage/             # R2 + storage helpers (@repo/storage)
 │   ├── ui/                  # Shared React components (@repo/ui)
 │   ├── utils/               # Shared utilities (@repo/utils)
-│   └── config/              # Shared TypeScript configs (@repo/config)
+│   └── workflows/           # Cloudflare Workflows (@repo/workflows)
 ├── e2e/                     # Playwright end-to-end tests
 ├── turbo.json               # Turborepo configuration
 └── pnpm-workspace.yaml      # pnpm workspace configuration
