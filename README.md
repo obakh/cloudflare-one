@@ -24,16 +24,53 @@ The name "Cloudflare One" reflects the vision: **one template to build anything*
 
 ## Tech Stack
 
+### Core Technologies
 - **Build System**: Turborepo + pnpm workspaces
-- **Frontend**: React 19 + React Router 7 (SSR)
-- **Blog**: Astro with MDX support
-- **Admin**: Astro + React + shadcn/ui
-- **Auth**: Better Auth + Drizzle ORM
-- **Styling**: Tailwind CSS
-- **Backend**: Hono on Cloudflare Workers
-- **Database**: PostgreSQL via Cloudflare Hyperdrive
-- **Monitoring**: Sentry SDK (@sentry/cloudflare)
 - **Language**: TypeScript
+- **Linting & Formatting**: Biome
+- **Testing**: Vitest + Playwright
+- **Git Hooks**: Husky + lint-staged + Commitlint
+
+### Frontend
+- **Framework**: React 19 + React Router 7 (SSR)
+- **UI Components**: shadcn/ui + Radix UI
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
+- **Icons**: Lucide React
+- **Blog**: Astro with MDX support
+- **Admin**: Astro + React
+- **Desktop**: Tauri (cross-platform)
+- **Storybook**: Component documentation
+
+### Backend & Infrastructure
+- **Runtime**: Cloudflare Workers
+- **API Framework**: Hono
+- **Database**: PostgreSQL via Cloudflare Hyperdrive
+- **ORM**: Drizzle ORM
+- **Authentication**: Better Auth
+- **File Storage**: Cloudflare R2
+- **Key-Value**: Cloudflare KV
+- **Queues**: Cloudflare Queues
+- **Cron**: Cloudflare Cron Triggers
+- **Workflows**: Cloudflare Workflows
+- **AI**: Cloudflare Workers AI
+
+### Observability & Security
+- **Monitoring**: Sentry (@sentry/cloudflare)
+- **Analytics**: Custom analytics + consent management
+- **Security**: Cloudflare Turnstile, rate limiting, security headers
+- **SEO**: Prerendering, meta tags, sitemap generation
+
+### Additional Features
+- **Email**: Resend, SendGrid, Cloudflare Email Workers
+- **Payments**: Payment processing integration
+- **i18n**: Internationalization support
+- **Feature Flags**: Feature flag management
+- **A/B Testing**: Experiments framework
+- **Real-time**: Chat functionality
+- **Media**: Image processing with Cloudflare Puppeteer
+- **Invoicing**: Invoice generation
+- **Integrations**: Third-party service integrations
 
 ## Structure
 
