@@ -1,0 +1,60 @@
+---
+title: Quick Start
+description: Get started with the project in minutes
+---
+
+# Quick Start
+
+Follow these steps to get the project running locally.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- Node.js 18+ installed
+- pnpm package manager
+- A database (PostgreSQL recommended)
+
+## Installation
+
+<Steps>
+  <Step title="Clone the repository">
+    ```bash
+    git clone https://github.com/your-repo.git
+    cd your-repo
+    ```
+  </Step>
+  
+  <Step title="Install dependencies">
+    ```bash
+    pnpm install
+    ```
+  </Step>
+  
+  <Step title="Set up environment variables">
+    Copy the example environment file and fill in your values:
+    ```bash
+    cp .env.example .env
+    ```
+  </Step>
+  
+  <Step title="Run database migrations">
+    ```bash
+    pnpm db:migrate
+    ```
+  </Step>
+  
+  <Step title="Start the development server">
+    ```bash
+    pnpm dev
+    ```
+  </Step>
+</Steps>
+
+## Next Steps
+
+Now that you have the project running:
+
+- Learn about [authentication](/guides/authentication)
+- Explore the [API reference](/api-reference/introduction)
+- Set up [deployment](/guides/deployment)

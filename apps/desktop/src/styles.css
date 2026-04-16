@@ -1,0 +1,215 @@
+:root {
+	--bg-primary: #0a0a0a;
+	--bg-secondary: #141414;
+	--bg-tertiary: #1f1f1f;
+	--text-primary: #fafafa;
+	--text-secondary: #a1a1a1;
+	--text-muted: #737373;
+	--border: #262626;
+	--accent: #3b82f6;
+	--accent-hover: #2563eb;
+	--success: #22c55e;
+	--warning: #f59e0b;
+	--error: #ef4444;
+	--titlebar-height: 32px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	background: var(--bg-primary);
+	color: var(--text-primary);
+	min-height: 100vh;
+	overflow: hidden;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+/* Titlebar */
+.titlebar {
+	height: var(--titlebar-height);
+	background: var(--bg-secondary);
+	border-bottom: 1px solid var(--border);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 12px;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.titlebar-drag {
+	flex: 1;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	-webkit-app-region: drag;
+}
+
+.titlebar-title {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--text-secondary);
+}
+
+.titlebar-controls {
+	display: flex;
+	gap: 8px;
+	-webkit-app-region: no-drag;
+}
+
+.titlebar-btn {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	transition: opacity 0.15s;
+}
+
+.titlebar-btn:hover {
+	opacity: 0.8;
+}
+
+.titlebar-btn.close {
+	background: var(--error);
+}
+
+.titlebar-btn.minimize {
+	background: var(--warning);
+}
+
+.titlebar-btn.maximize {
+	background: var(--success);
+}
+
+/* Main content */
+.main-content {
+	flex: 1;
+	overflow: auto;
+	padding: 24px;
+}
+
+/* Cards */
+.card {
+	background: var(--bg-secondary);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 20px;
+	margin-bottom: 16px;
+}
+
+.card-title {
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 12px;
+}
+
+.card-description {
+	font-size: 14px;
+	color: var(--text-secondary);
+	line-height: 1.5;
+}
+
+/* Buttons */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 8px 16px;
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.15s;
+}
+
+.btn-primary {
+	background: var(--accent);
+	color: white;
+}
+
+.btn-primary:hover {
+	background: var(--accent-hover);
+}
+
+.btn-secondary {
+	background: var(--bg-tertiary);
+	color: var(--text-primary);
+	border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+	background: var(--border);
+}
+
+/* Grid */
+.grid {
+	display: grid;
+	gap: 16px;
+}
+
+.grid-2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+/* Status indicator */
+.status {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 12px;
+	color: var(--text-secondary);
+}
+
+.status-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+}
+
+.status-dot.online {
+	background: var(--success);
+}
+
+.status-dot.offline {
+	background: var(--error);
+}
+
+.status-dot.pending {
+	background: var(--warning);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--border);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--text-muted);
+}

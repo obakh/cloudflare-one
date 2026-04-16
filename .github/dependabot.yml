@@ -1,0 +1,131 @@
+version: 2
+updates:
+  # Root package.json
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    groups:
+      dev-dependencies:
+        patterns:
+          - "@biomejs/*"
+          - "@playwright/*"
+          - "turbo"
+          - "husky"
+          - "lint-staged"
+          - "@commitlint/*"
+        update-types:
+          - "minor"
+          - "patch"
+      typescript:
+        patterns:
+          - "typescript"
+          - "@types/*"
+    labels:
+      - "dependencies"
+      - "automated"
+    commit-message:
+      prefix: "chore(deps)"
+
+  # Apps
+  - package-ecosystem: "npm"
+    directory: "/apps/web"
+    schedule:
+      interval: "weekly"
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "react-router"
+          - "@react-router/*"
+      cloudflare:
+        patterns:
+          - "wrangler"
+          - "@cloudflare/*"
+    labels:
+      - "dependencies"
+      - "app:web"
+    commit-message:
+      prefix: "chore(web)"
+
+  - package-ecosystem: "npm"
+    directory: "/apps/blog"
+    schedule:
+      interval: "weekly"
+    groups:
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
+    labels:
+      - "dependencies"
+      - "app:blog"
+    commit-message:
+      prefix: "chore(blog)"
+
+  - package-ecosystem: "npm"
+    directory: "/apps/app"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "app:app"
+    commit-message:
+      prefix: "chore(app)"
+
+  - package-ecosystem: "npm"
+    directory: "/apps/admin"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "app:admin"
+    commit-message:
+      prefix: "chore(admin)"
+
+  # Packages
+  - package-ecosystem: "npm"
+    directory: "/packages/ui"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "package:ui"
+    commit-message:
+      prefix: "chore(ui)"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/auth"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "package:auth"
+    commit-message:
+      prefix: "chore(auth)"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/db"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "package:db"
+    commit-message:
+      prefix: "chore(db)"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "ci(deps)"

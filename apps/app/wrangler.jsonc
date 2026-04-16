@@ -1,0 +1,27 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "app",
+	"main": "./build/server/index.js",
+	"compatibility_date": "2025-01-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"directory": "./build/client",
+		"binding": "ASSETS"
+	},
+	"observability": {
+		"enabled": true
+	},
+	// Bindings - uncomment and configure as needed
+	// "d1_databases": [
+	//   { "binding": "DB", "database_name": "app-db", "database_id": "xxx" }
+	// ],
+	// "kv_namespaces": [
+	//   { "binding": "KV", "id": "xxx" }
+	// ],
+	// "r2_buckets": [
+	//   { "binding": "STORAGE", "bucket_name": "app-storage" }
+	// ],
+	"vars": {
+		"APP_ENV": "development"
+	}
+}

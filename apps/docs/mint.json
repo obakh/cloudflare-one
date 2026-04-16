@@ -1,0 +1,70 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Documentation",
+  "logo": {
+    "dark": "/logos/logo-dark.svg",
+    "light": "/logos/logo-light.svg",
+    "href": "/"
+  },
+  "favicon": "/logos/favicon.png",
+  "colors": {
+    "primary": "#1D1D1D",
+    "light": "#F2F1EF",
+    "dark": "#1D1D1D",
+    "background": {
+      "dark": "#121212",
+      "light": "#FFFFFF"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:support@example.com"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Dashboard",
+    "url": "http://localhost:5174"
+  },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": ["introduction", "quickstart"]
+    },
+    {
+      "group": "Guides",
+      "pages": ["guides/authentication", "guides/deployment"]
+    },
+    {
+      "group": "API Reference",
+      "pages": ["api-reference/introduction"]
+    },
+    {
+      "group": "Endpoints",
+      "pages": [
+        "api-reference/endpoints/users",
+        "api-reference/endpoints/auth"
+      ]
+    }
+  ],
+  "feedback": {
+    "thumbsRating": true
+  },
+  "footerSocials": {
+    "github": "https://github.com",
+    "twitter": "https://twitter.com"
+  }
+}

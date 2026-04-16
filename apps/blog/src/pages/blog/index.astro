@@ -1,0 +1,64 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import { BlogCard } from '../../components/BlogCard';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const formatDate = (date: Date) => date.toLocaleDateString('en-us', {
+	year: 'numeric',
+	month: 'short',
+	day: 'numeric',
+});
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main class="min-h-screen">
+			<section class="max-w-4xl mx-auto px-4 py-12">
+				<h1 class="text-3xl font-bold text-foreground mb-8">Blog</h1>
+				
+				<!-- Featured Post (first post) -->
+				{posts.length > 0 && (
+					<div class="mb-12">
+						<BlogCard
+							href={`/blog/${posts[0].id}/`}
+							image={posts[0].data.heroImage || ''}
+							title={posts[0].data.title}
+							date={formatDate(posts[0].data.pubDate)}
+							description={posts[0].data.description}
+							featured
+							client:load
+						/>
+					</div>
+				)}
+
+				<!-- Other Posts Grid -->
+				{posts.length > 1 && (
+					<div class="grid gap-6 md:grid-cols-2">
+						{posts.slice(1).map((post) => (
+							<BlogCard
+								href={`/blog/${post.id}/`}
+								image={post.data.heroImage || ''}
+								title={post.data.title}
+								date={formatDate(post.data.pubDate)}
+								client:load
+							/>
+						))}
+					</div>
+				)}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

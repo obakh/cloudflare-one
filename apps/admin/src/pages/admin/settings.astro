@@ -1,0 +1,55 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui";
+import { SettingsForm } from "@/components/SettingsForm";
+
+const env = Astro.locals.runtime?.env;
+const dbConfigured = env?.DB !== undefined;
+const apiTokenSet = env?.API_TOKEN && env.API_TOKEN !== "";
+---
+
+<Layout title="Settings">
+	<div class="space-y-6">
+		{/* Status Cards */}
+		<div class="grid gap-4 md:grid-cols-2">
+			<Card>
+				<CardHeader>
+					<CardTitle>Database Connection</CardTitle>
+					<CardDescription>PostgreSQL via Cloudflare Hyperdrive</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<div class="flex items-center gap-2">
+						<div class={`h-3 w-3 rounded-full ${dbConfigured ? "bg-green-500" : "bg-yellow-500"}`}></div>
+						<span class="text-sm">{dbConfigured ? "Connected" : "Not configured"}</span>
+					</div>
+					{!dbConfigured && (
+						<p class="text-sm text-muted-foreground mt-2">
+							Add Hyperdrive config to wrangler.jsonc
+						</p>
+					)}
+				</CardContent>
+			</Card>
+
+			<Card>
+				<CardHeader>
+					<CardTitle>API Authentication</CardTitle>
+					<CardDescription>Bearer token for API endpoints</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<div class="flex items-center gap-2">
+						<div class={`h-3 w-3 rounded-full ${apiTokenSet ? "bg-green-500" : "bg-yellow-500"}`}></div>
+						<span class="text-sm">{apiTokenSet ? "Configured" : "Not set"}</span>
+					</div>
+					{!apiTokenSet && (
+						<p class="text-sm text-muted-foreground mt-2">
+							Add API_TOKEN to wrangler.jsonc vars
+						</p>
+					)}
+				</CardContent>
+			</Card>
+		</div>
+
+		{/* General Settings - React component with client hydration */}
+		<SettingsForm client:load />
+	</div>
+</Layout>

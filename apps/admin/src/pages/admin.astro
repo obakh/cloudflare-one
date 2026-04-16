@@ -1,0 +1,116 @@
+---
+import { LayoutDashboard, Database, Settings, Users } from "lucide-react";
+import Layout from "@/layouts/Layout.astro";
+import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui";
+
+const env = Astro.locals.runtime?.env;
+const dbConfigured = env?.DB !== undefined;
+
+const stats = [
+	{
+		name: "Total Users",
+		value: "1,234",
+		icon: Users,
+		change: "+12%",
+	},
+	{
+		name: "Database",
+		value: dbConfigured ? "Connected" : "Not configured",
+		icon: Database,
+	},
+	{
+		name: "Active Sessions",
+		value: "89",
+		icon: LayoutDashboard,
+		change: "+5%",
+	},
+];
+
+const quickLinks = [
+	{
+		name: "User Management",
+		description: "Manage users and permissions",
+		icon: Users,
+		href: "/admin/users",
+	},
+	{
+		name: "Database",
+		description: "View and manage database",
+		icon: Database,
+		href: "/admin/database",
+	},
+	{
+		name: "Settings",
+		description: "Configure your admin panel",
+		icon: Settings,
+		href: "/admin/settings",
+	},
+];
+---
+
+<Layout title="Dashboard">
+	<div class="space-y-8">
+		{/* Stats Grid */}
+		<div class="grid gap-4 md:grid-cols-3">
+			{stats.map((stat) => (
+				<Card>
+					<CardHeader className="flex flex-row items-center justify-between pb-2">
+						<CardTitle className="text-sm font-medium text-muted-foreground">{stat.name}</CardTitle>
+						<stat.icon className="h-4 w-4 text-muted-foreground" />
+					</CardHeader>
+					<CardContent>
+						<div class="text-2xl font-bold">{stat.value}</div>
+						{stat.change && (
+							<p class="text-xs text-muted-foreground mt-1">
+								<span class="text-green-500">{stat.change}</span> from last month
+							</p>
+						)}
+					</CardContent>
+				</Card>
+			))}
+		</div>
+
+		{/* Quick Links */}
+		<div>
+			<h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+			<div class="grid gap-4 md:grid-cols-3">
+				{quickLinks.map((item) => (
+					<a href={item.href} class="group">
+						<Card className="transition-colors hover:bg-muted/50">
+							<CardContent className="p-6">
+								<div class="flex items-center gap-4">
+									<div class="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+										<item.icon className="h-5 w-5 text-primary" />
+									</div>
+									<div>
+										<h4 class="font-medium">{item.name}</h4>
+										<p class="text-sm text-muted-foreground">{item.description}</p>
+									</div>
+								</div>
+							</CardContent>
+						</Card>
+					</a>
+				))}
+			</div>
+		</div>
+
+		{/* Getting Started */}
+		<Card>
+			<CardHeader>
+				<CardTitle>Getting Started</CardTitle>
+			</CardHeader>
+			<CardContent>
+				<div class="text-muted-foreground space-y-2">
+					<p>This admin dashboard is ready for you to customize. It includes:</p>
+					<ul class="list-disc list-inside space-y-1 ml-2">
+						<li>Astro + React for hybrid rendering</li>
+						<li>@repo/ui components (shared with apps/app)</li>
+						<li>Tailwind CSS with dark mode support</li>
+						<li>PostgreSQL via Cloudflare Hyperdrive (optional)</li>
+						<li>API routes with token authentication</li>
+					</ul>
+				</div>
+			</CardContent>
+		</Card>
+	</div>
+</Layout>

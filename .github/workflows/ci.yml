@@ -1,0 +1,269 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+  NODE_OPTIONS: "--max-old-space-size=4096"
+
+jobs:
+  # ============================================
+  # DETECT CHANGES - Smart filtering
+  # ============================================
+  changes:
+    name: 🔍 Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      web: ${{ steps.filter.outputs.web }}
+      app: ${{ steps.filter.outputs.app }}
+      blog: ${{ steps.filter.outputs.blog }}
+      admin: ${{ steps.filter.outputs.admin }}
+      packages: ${{ steps.filter.outputs.packages }}
+      e2e: ${{ steps.filter.outputs.e2e }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            web:
+              - 'apps/web/**'
+              - 'packages/**'
+            app:
+              - 'apps/app/**'
+              - 'packages/**'
+            blog:
+              - 'apps/blog/**'
+              - 'packages/**'
+            admin:
+              - 'apps/admin/**'
+              - 'packages/**'
+            packages:
+              - 'packages/**'
+            e2e:
+              - 'e2e/**'
+              - 'playwright.config.ts'
+
+  # ============================================
+  # QUALITY CHECKS - Lint, Format, Types
+  # ============================================
+  quality:
+    name: 🔦 Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔦 Lint (Biome)
+        run: pnpm lint
+
+      - name: 💅 Format check
+        run: pnpm format --check || echo "::warning::Some files need formatting"
+
+      - name: 🔍 Type check
+        run: pnpm check-types
+
+  # ============================================
+  # BUILD - Ensure all packages build
+  # ============================================
+  build:
+    name: 🏗️ Build
+    runs-on: ubuntu-latest
+    needs: [quality]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build all packages
+        run: pnpm build
+
+      - name: 📤 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            apps/*/build
+            apps/*/.react-router
+            apps/*/.astro
+            apps/*/dist
+            packages/*/dist
+          retention-days: 1
+
+  # ============================================
+  # UNIT TESTS - Run Vitest
+  # ============================================
+  test-unit:
+    name: 🧪 Unit Tests
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🧪 Run unit tests
+        run: pnpm test
+
+      - name: 📊 Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-test-results
+          path: |
+            **/coverage
+            **/test-results
+          retention-days: 7
+
+      - name: 📈 Upload coverage to summary
+        if: always()
+        run: |
+          echo "## 📊 Test Coverage" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "apps/web/coverage/coverage-summary.json" ]; then
+            echo "Coverage reports generated. Check artifacts for details." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No coverage reports found." >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ============================================
+  # E2E TESTS - Playwright
+  # ============================================
+  test-e2e:
+    name: 🎭 E2E Tests
+    runs-on: ubuntu-latest
+    needs: [build, changes]
+    if: needs.changes.outputs.e2e == 'true' || needs.changes.outputs.web == 'true' || needs.changes.outputs.blog == 'true' || needs.changes.outputs.admin == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🎭 Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: 🎭 Run E2E tests
+        run: pnpm test:e2e
+        env:
+          CI: true
+
+      - name: 📊 Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+      - name: 📊 Upload test traces
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: test-results/
+          retention-days: 7
+
+  # ============================================
+  # SECURITY SCAN
+  # ============================================
+  security:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    needs: [quality]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔒 Audit dependencies
+        run: pnpm audit --audit-level=high || echo "::warning::Security vulnerabilities found"
+        continue-on-error: true
+
+  # ============================================
+  # CI SUCCESS GATE
+  # ============================================
+  ci-success:
+    name: ✅ CI Success
+    runs-on: ubuntu-latest
+    needs: [quality, build, test-unit, security]
+    if: always()
+    steps:
+      - name: Check all jobs passed
+        run: |
+          if [[ "${{ needs.quality.result }}" != "success" ]] || \
+             [[ "${{ needs.build.result }}" != "success" ]] || \
+             [[ "${{ needs.test-unit.result }}" != "success" ]]; then
+            echo "❌ CI failed"
+            exit 1
+          fi
+          echo "✅ All CI checks passed!"

@@ -1,0 +1,79 @@
+{
+	"name": "@repo/editor",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./src/index.tsx",
+			"default": "./src/index.tsx"
+		},
+		"./extensions": {
+			"types": "./src/lib/extensions/index.ts",
+			"default": "./src/lib/extensions/index.ts"
+		},
+		"./extensions/client": {
+			"types": "./src/lib/extensions/client.ts",
+			"default": "./src/lib/extensions/client.ts"
+		},
+		"./extensions/server": {
+			"types": "./src/lib/extensions/server.ts",
+			"default": "./src/lib/extensions/server.ts"
+		},
+		"./styles": "./src/styles/editor.css"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"check-types": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/ai": "workspace:*",
+		"@repo/ui": "workspace:*",
+		"@react-hookz/web": "^25.1.1",
+		"@tiptap/core": "^2.10.3",
+		"@tiptap/extension-code-block-lowlight": "^2.10.3",
+		"@tiptap/extension-color": "^2.10.3",
+		"@tiptap/extension-highlight": "^2.10.3",
+		"@tiptap/extension-image": "^2.10.3",
+		"@tiptap/extension-link": "^2.10.3",
+		"@tiptap/extension-mention": "^2.10.3",
+		"@tiptap/extension-placeholder": "^2.10.3",
+		"@tiptap/extension-subscript": "^2.10.3",
+		"@tiptap/extension-superscript": "^2.10.3",
+		"@tiptap/extension-table": "^2.10.3",
+		"@tiptap/extension-table-cell": "^2.10.3",
+		"@tiptap/extension-table-header": "^2.10.3",
+		"@tiptap/extension-table-row": "^2.10.3",
+		"@tiptap/extension-task-item": "^2.10.3",
+		"@tiptap/extension-task-list": "^2.10.3",
+		"@tiptap/extension-text-style": "^2.10.3",
+		"@tiptap/extension-underline": "^2.10.3",
+		"@tiptap/extension-youtube": "^2.10.3",
+		"@tiptap/html": "^2.10.3",
+		"@tiptap/pm": "^2.10.3",
+		"@tiptap/react": "^2.10.3",
+		"@tiptap/starter-kit": "^2.10.3",
+		"@tiptap/suggestion": "^2.10.3",
+		"deep-equal": "^2.2.3",
+		"happy-dom": "^17.4.7",
+		"highlight.js": "^11.11.1",
+		"lowlight": "^3.3.0",
+		"lucide-react": "^0.511.0",
+		"nanoid": "^5.1.5",
+		"react-markdown": "^10.1.0",
+		"tippy.js": "^6.3.7",
+		"tiptap-extension-figma": "^1.0.6",
+		"tiptap-extension-iframely": "^1.0.4"
+	},
+	"devDependencies": {
+		"@repo/config": "workspace:*",
+		"@types/deep-equal": "^1.0.4",
+		"@types/react": "^19.0.0",
+		"@types/react-dom": "^19.0.0",
+		"typescript": "^5.7.2"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0",
+		"react-dom": "^18.0.0 || ^19.0.0"
+	}
+}

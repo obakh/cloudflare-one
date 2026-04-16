@@ -1,0 +1,37 @@
+{
+	"name": "@repo/notifications",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"check-types": "tsc --noEmit",
+		"email:dev": "email dev",
+		"email:export": "email export"
+	},
+	"exports": {
+		".": "./src/index.ts",
+		"./email": "./src/email/index.ts",
+		"./email/providers/resend": "./src/email/providers/resend.ts",
+		"./email/providers/sendgrid": "./src/email/providers/sendgrid.ts",
+		"./email/templates": "./src/email/templates/index.ts",
+		"./email-workers": "./src/email-workers/index.ts",
+		"./build-events": "./src/build-events/index.ts",
+		"./queues": "./src/queues/index.ts"
+	},
+	"dependencies": {
+		"@react-email/components": "^0.0.31",
+		"@react-email/render": "^1.0.4",
+		"react": "^19.0.0",
+		"resend": "^4.0.0"
+	},
+	"optionalDependencies": {
+		"postal-mime": "^2.4.0",
+		"mimetext": "^3.0.0"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20241230.0",
+		"@types/react": "^19.0.0",
+		"react-email": "^3.0.0",
+		"typescript": "^5.7.0"
+	}
+}

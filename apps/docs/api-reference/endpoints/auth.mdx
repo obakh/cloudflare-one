@@ -1,0 +1,127 @@
+---
+title: Authentication
+description: Authentication endpoints
+---
+
+# Authentication API
+
+Endpoints for user authentication.
+
+## Sign Up
+
+<ParamField path="POST" method="/api/auth/sign-up/email">
+  Create a new user account with email and password.
+</ParamField>
+
+### Request Body
+
+```json
+{
+  "email": "user@example.com",
+  "password": "securepassword123",
+  "name": "John Doe"
+}
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "user": {
+      "id": "user_123",
+      "email": "user@example.com",
+      "name": "John Doe"
+    },
+    "session": {
+      "token": "session_token_here"
+    }
+  }
+}
+```
+
+## Sign In
+
+<ParamField path="POST" method="/api/auth/sign-in/email">
+  Sign in with email and password.
+</ParamField>
+
+### Request Body
+
+```json
+{
+  "email": "user@example.com",
+  "password": "securepassword123"
+}
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "user": {
+      "id": "user_123",
+      "email": "user@example.com",
+      "name": "John Doe"
+    },
+    "session": {
+      "token": "session_token_here"
+    }
+  }
+}
+```
+
+## Sign Out
+
+<ParamField path="POST" method="/api/auth/sign-out">
+  Sign out the current user.
+</ParamField>
+
+### Response
+
+```json
+{
+  "data": {
+    "success": true
+  }
+}
+```
+
+## Get Session
+
+<ParamField path="GET" method="/api/auth/session">
+  Get the current session.
+</ParamField>
+
+### Response
+
+```json
+{
+  "data": {
+    "user": {
+      "id": "user_123",
+      "email": "user@example.com",
+      "name": "John Doe"
+    },
+    "session": {
+      "id": "session_123",
+      "expiresAt": "2024-02-01T00:00:00Z"
+    }
+  }
+}
+```
+
+## OAuth
+
+### Google
+
+<ParamField path="GET" method="/api/auth/sign-in/social?provider=google">
+  Initiate Google OAuth flow.
+</ParamField>
+
+### GitHub
+
+<ParamField path="GET" method="/api/auth/sign-in/social?provider=github">
+  Initiate GitHub OAuth flow.
+</ParamField>

@@ -1,0 +1,240 @@
+{
+	"type": "doc",
+	"content": [
+		{
+			"type": "heading",
+			"attrs": { "level": 1 },
+			"content": [{ "text": "Project Brief", "type": "text" }]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 2 },
+			"content": [{ "text": "Overview", "type": "text" }]
+		},
+		{
+			"type": "paragraph",
+			"content": [{ "text": "Provide a brief summary of the project.", "type": "text" }]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 2 },
+			"content": [{ "text": "Goals", "type": "text" }]
+		},
+		{
+			"type": "bulletList",
+			"content": [
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Goal 1", "type": "text" }]
+						}
+					]
+				},
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Goal 2", "type": "text" }]
+						}
+					]
+				},
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [{ "text": "Goal 3", "type": "text" }]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 2 },
+			"content": [{ "text": "Timeline", "type": "text" }]
+		},
+		{
+			"type": "table",
+			"content": [
+				{
+					"type": "tableRow",
+					"content": [
+						{
+							"type": "tableHeader",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "Phase", "type": "text" }]
+								}
+							]
+						},
+						{
+							"type": "tableHeader",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "Start Date", "type": "text" }]
+								}
+							]
+						},
+						{
+							"type": "tableHeader",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "End Date", "type": "text" }]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "tableRow",
+					"content": [
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "Planning", "type": "text" }]
+								}
+							]
+						},
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "TBD", "type": "text" }]
+								}
+							]
+						},
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "TBD", "type": "text" }]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "tableRow",
+					"content": [
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "Development", "type": "text" }]
+								}
+							]
+						},
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "TBD", "type": "text" }]
+								}
+							]
+						},
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "TBD", "type": "text" }]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "tableRow",
+					"content": [
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "Launch", "type": "text" }]
+								}
+							]
+						},
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "TBD", "type": "text" }]
+								}
+							]
+						},
+						{
+							"type": "tableCell",
+							"content": [
+								{
+									"type": "paragraph",
+									"content": [{ "text": "TBD", "type": "text" }]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "heading",
+			"attrs": { "level": 2 },
+			"content": [{ "text": "Team", "type": "text" }]
+		},
+		{
+			"type": "bulletList",
+			"content": [
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{ "text": "Project Lead: ", "type": "text", "marks": [{ "type": "bold" }] },
+								{ "text": "@name", "type": "text" }
+							]
+						}
+					]
+				},
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{ "text": "Engineering: ", "type": "text", "marks": [{ "type": "bold" }] },
+								{ "text": "@name", "type": "text" }
+							]
+						}
+					]
+				},
+				{
+					"type": "listItem",
+					"content": [
+						{
+							"type": "paragraph",
+							"content": [
+								{ "text": "Design: ", "type": "text", "marks": [{ "type": "bold" }] },
+								{ "text": "@name", "type": "text" }
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

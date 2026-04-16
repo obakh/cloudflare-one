@@ -1,0 +1,33 @@
+# ===========================================
+# Web App Environment Variables
+# ===========================================
+# Copy this file to .dev.vars and fill in your values
+# cp .dev.vars.example .dev.vars
+
+# -----------------------------------------
+# Database (Hyperdrive)
+# -----------------------------------------
+# Local PostgreSQL connection string for development
+# Used when Hyperdrive is configured in wrangler.jsonc
+# DATABASE_URL="postgresql://myuser:mypassword@localhost:5432/mydatabase"
+
+# -----------------------------------------
+# Authentication (Better Auth)
+# -----------------------------------------
+# Base URL for auth callbacks (your app's URL)
+BETTER_AUTH_URL="http://localhost:5173"
+
+# Secret key for signing tokens (min 32 characters)
+# Generate with: openssl rand -base64 32
+BETTER_AUTH_SECRET="your-secret-key-at-least-32-characters-long"
+
+# -----------------------------------------
+# Monitoring (Sentry)
+# -----------------------------------------
+# Sentry DSN from your project settings
+# SENTRY_DSN="https://xxx@xxx.ingest.sentry.io/xxx"
+
+# -----------------------------------------
+# Add your custom environment variables below
+# -----------------------------------------
+# API_KEY="your-api-key"

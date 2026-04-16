@@ -1,0 +1,15 @@
+{
+	"name": "blog",
+	"compatibility_date": "2025-10-08",
+	"compatibility_flags": ["nodejs_compat"],
+	"main": "./dist/_worker.js/index.js",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"_comment_sentry": "To enable Sentry, add traces/logs destinations in Cloudflare dashboard, then add: traces: { enabled: true, destinations: ['sentry-traces'] }, logs: { enabled: true, destinations: ['sentry-logs'] }",
+	"upload_source_maps": true
+}

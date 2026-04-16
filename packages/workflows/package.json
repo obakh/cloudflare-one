@@ -1,0 +1,16 @@
+{
+	"name": "@repo/workflows",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"check-types": "tsc --noEmit"
+	},
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20241230.0",
+		"typescript": "^5.7.0"
+	}
+}
