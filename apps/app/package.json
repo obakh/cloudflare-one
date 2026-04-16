@@ -31,7 +31,7 @@
 		"date-fns": "^4.1.0",
 		"hono": "^4.7.10",
 		"isbot": "^5.1.27",
-		"lucide-react": "^0.468.0",
+		"lucide-react": "^1.8.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-hook-form": "^7.54.2",
