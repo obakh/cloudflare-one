@@ -1,10 +1,10 @@
-name: Deploy Admin
+name: Deploy App
 
 on:
   push:
     branches: [main]
     paths:
-      - 'apps/admin/**'
+      - 'apps/app/**'
       - 'packages/**'
   workflow_dispatch:
     inputs:
@@ -18,7 +18,7 @@ on:
           - preview
 
 concurrency:
-  group: deploy-admin-${{ github.ref }}
+  group: deploy-app-${{ github.ref }}
   cancel-in-progress: true
 
 env:
@@ -27,7 +27,7 @@ env:
 
 jobs:
   deploy:
-    name: 🚀 Deploy Admin
+    name: 🚀 Deploy App
     runs-on: ubuntu-latest
     environment:
       name: ${{ github.event.inputs.environment || 'production' }}
@@ -50,7 +50,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🏗️ Build
-        run: pnpm --filter @repo/admin build
+        run: pnpm --filter @repo/app build
 
       - name: 🚀 Deploy to Cloudflare
         id: deploy
@@ -58,13 +58,13 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: apps/admin
-          command: deploy ./dist/_worker.js/index.js --name admin --assets ./dist --compatibility-date 2025-10-08 --compatibility-flags nodejs_compat
+          workingDirectory: apps/app
+          command: deploy
 
       - name: 📝 Deployment Summary
         run: |
           echo "## 🚀 Deployment Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**App:** Admin" >> $GITHUB_STEP_SUMMARY
+          echo "**App:** App" >> $GITHUB_STEP_SUMMARY
           echo "**Environment:** ${{ github.event.inputs.environment || 'production' }}" >> $GITHUB_STEP_SUMMARY
           echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
