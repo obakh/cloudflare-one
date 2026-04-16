@@ -24,17 +24,17 @@
 		"framer-motion": "^12.23.25",
 		"isbot": "5.1.32",
 		"lucide-react": "^0.542.0",
-		"react": "19.2.1",
-		"react-dom": "19.2.1",
-		"react-router": "7.9.6"
+		"react": "19.2.5",
+		"react-dom": "19.2.5",
+		"react-router": "7.14.1"
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "1.15.3",
 		"@cloudflare/vitest-pool-workers": "^0.8.0",
 		"@repo/config": "workspace:*",
-		"@react-router/dev": "7.9.6",
+		"@react-router/dev": "7.14.1",
 		"@types/node": "24.10.1",
-		"@types/react": "^19.0.0",
+		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.0.0",
 		"autoprefixer": "^10.4.21",
 		"hono": "4.11.1",
