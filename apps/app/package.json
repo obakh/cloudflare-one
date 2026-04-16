@@ -33,7 +33,7 @@
 		"isbot": "^5.1.27",
 		"lucide-react": "^0.468.0",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0",
+		"react-dom": "^19.2.5",
 		"react-hook-form": "^7.54.2",
 		"react-router": "^7.6.1",
 		"tailwind-merge": "^2.6.0",
