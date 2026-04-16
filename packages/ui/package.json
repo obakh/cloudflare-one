@@ -151,7 +151,7 @@
 		"@types/react-syntax-highlighter": "^15.5.13",
 		"autoprefixer": "^10.4.21",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0",
+		"react-dom": "^19.2.5",
 		"react-hook-form": "^7.56.0",
 		"rimraf": "^6.0.0",
 		"tippy.js": "^6.3.7",
