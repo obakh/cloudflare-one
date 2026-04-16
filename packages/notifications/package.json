@@ -13,6 +13,7 @@
 		"./email": "./src/email/index.ts",
 		"./email/providers/resend": "./src/email/providers/resend.ts",
 		"./email/providers/sendgrid": "./src/email/providers/sendgrid.ts",
+		"./email/providers/cloudflare": "./src/email/providers/cloudflare.ts",
 		"./email/templates": "./src/email/templates/index.ts",
 		"./email-workers": "./src/email-workers/index.ts",
 		"./build-events": "./src/build-events/index.ts",

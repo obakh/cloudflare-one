@@ -4,7 +4,7 @@
  * Provides email sending (multiple providers), queue-based job processing,
  * incoming email handling, and build event notifications.
  *
- * @example Email with React Email templates
+ * @example Email with React Email templates (Resend)
  * ```ts
  * import { createEmailClient } from "@repo/notifications/email";
  * import { createResendProvider } from "@repo/notifications/email/providers/resend";
@@ -17,6 +17,39 @@
  *   to: "user@example.com",
  *   subject: "Welcome!",
  *   react: <WelcomeEmail name="John" appName="Acme" />,
+ * });
+ * ```
+ *
+ * @example Email with Cloudflare Email Service (Workers binding)
+ * ```ts
+ * import { createEmailClient } from "@repo/notifications/email";
+ * import { createCloudflareProvider } from "@repo/notifications/email/providers/cloudflare";
+ *
+ * const email = createEmailClient(createCloudflareProvider({ binding: env.EMAIL }));
+ *
+ * await email.send({
+ *   from: "welcome@yourdomain.com",
+ *   to: "user@example.com",
+ *   subject: "Welcome!",
+ *   html: "<h1>Welcome!</h1><p>Thanks for signing up.</p>",
+ * });
+ * ```
+ *
+ * @example Email with Cloudflare Email Service (REST API)
+ * ```ts
+ * import { createEmailClient } from "@repo/notifications/email";
+ * import { createCloudflareProvider } from "@repo/notifications/email/providers/cloudflare";
+ *
+ * const email = createEmailClient(createCloudflareProvider({
+ *   accountId: env.CLOUDFLARE_ACCOUNT_ID,
+ *   apiToken: env.CLOUDFLARE_API_TOKEN,
+ * }));
+ *
+ * await email.send({
+ *   from: "welcome@yourdomain.com",
+ *   to: "user@example.com",
+ *   subject: "Welcome!",
+ *   html: "<h1>Welcome!</h1><p>Thanks for signing up.</p>",
  * });
  * ```
  *
