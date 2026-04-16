@@ -118,30 +118,99 @@ The name "Cloudflare One" reflects the vision: **one template to build anything*
 
 ## Getting Started
 
-**New to the project?** Check out [CONTRIBUTING.md](./CONTRIBUTING.md) for a complete development guide.
+### Prerequisites
 
-```bash
-# Install dependencies
-pnpm install
+Before you begin, ensure you have the following installed:
 
-# Copy environment variables
-cp apps/web/.dev.vars.example apps/web/.dev.vars
-cp apps/blog/.dev.vars.example apps/blog/.dev.vars
-cp apps/admin/.dev.vars.example apps/admin/.dev.vars
+- **Node.js** >= 20.16.0 ([Download](https://nodejs.org/))
+- **pnpm** 9.15.0 or later ([Install](https://pnpm.io/installation))
+- **Docker** (optional, for PostgreSQL) ([Install](https://docs.docker.com/get-docker/))
+- **Cloudflare Account** (for deployment) ([Sign up](https://dash.cloudflare.com/sign-up))
 
-# Start PostgreSQL (optional, for auth)
-docker compose -f apps/web/docker-compose.yml up -d
+### Quick Start
 
-# Start development (all apps)
-pnpm dev
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/obakh/cloudflare-one.git
+   cd cloudflare-one
+   ```
 
-# Or start individual apps
-pnpm --filter @repo/web dev
-pnpm --filter @repo/blog dev
-pnpm --filter @repo/admin dev
-```
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
 
-**Having issues?** See [docs/troubleshooting.md](./docs/troubleshooting.md)
+3. **Set up environment variables**
+
+   Copy the example environment files for each app:
+   ```bash
+   # Web app (main React Router app)
+   cp apps/web/.dev.vars.example apps/web/.dev.vars
+
+   # Secondary app
+   cp apps/app/.dev.vars.example apps/app/.dev.vars
+
+   # Blog
+   cp apps/blog/.dev.vars.example apps/blog/.dev.vars
+
+   # Admin dashboard
+   cp apps/admin/.dev.vars.example apps/admin/.dev.vars
+   ```
+
+   **Minimum required configuration** for `apps/web/.dev.vars`:
+   ```bash
+   BETTER_AUTH_URL="http://localhost:5173"
+   BETTER_AUTH_SECRET="your-secret-key-at-least-32-characters-long"
+   ```
+
+   Generate a secure secret with: `openssl rand -base64 32`
+
+4. **Start PostgreSQL (optional, for authentication)**
+
+   If you want to use authentication features:
+   ```bash
+   docker compose -f apps/web/docker-compose.yml up -d
+   ```
+
+   This starts PostgreSQL on `localhost:5432` with:
+   - User: `myuser`
+   - Password: `mypassword`
+   - Database: `mydatabase`
+
+5. **Start development**
+
+   Start all apps simultaneously:
+   ```bash
+   pnpm dev
+   ```
+
+   Or start individual apps:
+   ```bash
+   # Main web app (http://localhost:5173)
+   pnpm --filter @repo/web dev
+
+   # Blog (http://localhost:4321)
+   pnpm --filter @repo/blog dev
+
+   # Admin dashboard (http://localhost:4322)
+   pnpm --filter @repo/admin dev
+
+   # Secondary app (http://localhost:5174)
+   pnpm --filter @repo/app dev
+   ```
+
+6. **Access the apps**
+   - Web app: http://localhost:5173
+   - Blog: http://localhost:4321
+   - Admin: http://localhost:4322
+   - App: http://localhost:5174
+
+### Next Steps
+
+- **New to the project?** Check out [CONTRIBUTING.md](./CONTRIBUTING.md) for a complete development guide
+- **Setting up authentication?** See [Setting Up Authentication](#setting-up-authentication) below
+- **Having issues?** See [docs/troubleshooting.md](./docs/troubleshooting.md)
+- **Ready to deploy?** See [Deployment](#deployment) section
 
 ## Commands
 
