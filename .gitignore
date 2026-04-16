@@ -42,3 +42,11 @@ pnpm-debug.log*
 
 # Testing
 coverage/
+playwright-report/
+test-results/
+
+# Temporary files
+_temp/
+
+# IDE additional
+*~
