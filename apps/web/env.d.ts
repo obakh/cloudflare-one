@@ -2,6 +2,6 @@
 
 declare module "virtual:react-router/server-build" {
 	import type { ServerBuild } from "react-router";
-	const build: ServerBuild;
-	export { build as default };
+	const serverBuild: ServerBuild;
+	export default serverBuild;
 }

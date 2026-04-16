@@ -34,7 +34,7 @@ app.all("/api/notifications/*", (c) => c.text("", 200));
 // React Router SSR handler (keep this at the end)
 // ============================================
 const requestHandler = createRequestHandler(
-	() => import("virtual:react-router/server-build"),
+	async () => (await import("virtual:react-router/server-build")).default,
 	import.meta.env.MODE,
 );
 
