@@ -6,6 +6,6 @@
 		"build": "echo 'Mintlify builds are handled by the platform'"
 	},
 	"devDependencies": {
-		"mintlify": "^4.2.202"
+		"mintlify": "^4.2.518"
 	}
 }
