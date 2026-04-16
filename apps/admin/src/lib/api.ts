@@ -5,7 +5,7 @@ export async function validateApiToken(
 ): Promise<Response | null> {
 	const authHeader = request.headers.get("Authorization");
 
-	if (!authHeader || !authHeader.startsWith("Bearer ")) {
+	if (!authHeader?.startsWith("Bearer ")) {
 		return Response.json({ message: "Missing or invalid Authorization header" }, { status: 401 });
 	}
 

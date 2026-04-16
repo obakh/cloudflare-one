@@ -180,7 +180,7 @@ export function CommandPalette({ isOpen, onClose, onSignOut }: CommandPalettePro
 					{/* Search Input */}
 					<div className="border-b border-border relative">
 						<CommandInput
-							ref={inputRef}
+							ref={inputRef as any}
 							placeholder="Type a command or search..."
 							value={query}
 							onValueChange={setQuery}

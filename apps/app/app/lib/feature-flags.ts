@@ -12,7 +12,7 @@ import {
 } from "@repo/feature-flags";
 
 // Re-export React components
-export { FeatureFlagsProvider, useFeatureFlag, useFeatureFlags, Feature };
+export { Feature, FeatureFlagsProvider, useFeatureFlag, useFeatureFlags };
 
 /**
  * App feature flags configuration

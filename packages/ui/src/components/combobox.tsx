@@ -121,7 +121,7 @@ export const Combobox = ({
 				)}
 
 				<CommandInput
-					ref={inputRef}
+					ref={inputRef as any}
 					value={inputValue}
 					onValueChange={handleOnValueChange}
 					onBlur={handleBlur}

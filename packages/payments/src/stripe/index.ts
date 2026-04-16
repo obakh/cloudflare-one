@@ -197,5 +197,5 @@ export async function createPortalSession(
 // Re-exports
 // ============================================================================
 
-export { Stripe };
 export type { Stripe as StripeType } from "stripe";
+export { Stripe };

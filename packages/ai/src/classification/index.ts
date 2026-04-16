@@ -26,8 +26,8 @@ export type {
 	ClassificationModel,
 	ClassificationResult,
 	ObjectDetectionResult,
-	TranslationResponse,
 	SummarizationResponse,
+	TranslationResponse,
 };
 
 /**

@@ -4,7 +4,7 @@
  */
 import { type EventProperties, ecommerce, set, track } from "@repo/analytics";
 
-export { track, set, ecommerce };
+export { ecommerce, set, track };
 
 /**
  * Track page view

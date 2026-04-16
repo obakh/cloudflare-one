@@ -432,7 +432,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 
 		return (
 			<Command
-				ref={dropdownRef}
+				ref={dropdownRef as any}
 				{...commandProps}
 				onKeyDown={(e) => {
 					handleKeyDown(e);

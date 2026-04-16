@@ -10,8 +10,8 @@ import {
 	type Translations,
 } from "@repo/i18n";
 
+export type { LocaleDetectionResult, Translations };
 export { detectLocale, interpolate };
-export type { Translations, LocaleDetectionResult };
 
 /**
  * Supported locales
