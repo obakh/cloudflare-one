@@ -11,6 +11,17 @@ A scalable full-stack monorepo with React Router 7 + Cloudflare Workers, powered
 
 **📋 [Read Full Disclaimer](./DISCLAIMER.md)** - This is an unofficial community template, not affiliated with Cloudflare, Inc.
 
+## Why "Cloudflare One"?
+
+I created this template because I love Cloudflare and wanted to have all their products and services integrated in one comprehensive template. Instead of starting from scratch every time I have a new idea, this monorepo allows me to:
+
+- **Rapid Prototyping**: Test new ideas quickly without spending time on boilerplate setup
+- **All-in-One Solution**: Access to Cloudflare Workers, R2, KV, D1, Hyperdrive, AI, Queues, and more - all pre-configured
+- **Build for the Future**: A scalable monorepo architecture that can grow with any project
+- **Learn and Experiment**: Explore Cloudflare's ecosystem with working examples and best practices
+
+The name "Cloudflare One" reflects the vision: **one template to build anything** on Cloudflare's platform. Whether you're building a SaaS app, a blog, an admin dashboard, or experimenting with AI - everything you need is here, ready to go.
+
 ## Tech Stack
 
 - **Build System**: Turborepo + pnpm workspaces
