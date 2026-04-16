@@ -119,7 +119,7 @@
 		"@tiptap/extension-placeholder": "^2.12.0",
 		"@tiptap/extension-underline": "^2.12.0",
 		"@tiptap/pm": "^2.12.0",
-		"@tiptap/react": "^2.12.0",
+		"@tiptap/react": "^3.22.3",
 		"@tiptap/starter-kit": "^2.12.0",
 		"@uidotdev/usehooks": "^2.4.1",
 		"ai": "5.0.87",
