@@ -15,7 +15,7 @@
 		"./stripe/customers": "./src/stripe/customers.ts"
 	},
 	"dependencies": {
-		"stripe": "^17.5.0"
+		"stripe": "^22.0.2"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20241230.0",
