@@ -30,6 +30,6 @@
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250620.0",
 		"@repo/config": "workspace:*",
-		"typescript": "^5.7.2"
+		"typescript": "^6.0.3"
 	}
 }
