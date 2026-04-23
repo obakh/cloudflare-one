@@ -21,7 +21,7 @@
 		"@astrojs/tailwind": "6.0.2",
 		"@repo/db": "workspace:*",
 		"@repo/ui": "workspace:*",
-		"astro": "5.16.2",
+		"astro": "6.1.9",
 		"lucide-react": "^0.468.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
