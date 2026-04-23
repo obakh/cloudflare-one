@@ -50,6 +50,6 @@
 		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.7.2",
 		"vite": "^6.0.0",
-		"wrangler": "^4.14.0"
+		"wrangler": "^4.84.1"
 	}
 }
