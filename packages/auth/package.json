@@ -28,7 +28,7 @@
 		"drizzle-kit": "^0.31.4",
 		"drizzle-orm": "^0.44.4",
 		"pg": "^8.13.1",
-		"typescript": "^5.7.0",
+		"typescript": "^6.0.3",
 		"vitest": "^2.1.8"
 	}
 }
