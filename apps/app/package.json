@@ -14,7 +14,7 @@
 	"dependencies": {
 		"@cloudflare/workers-types": "^4.20250109.0",
 		"@hookform/resolvers": "^3.9.1",
-		"@react-router/cloudflare": "^7.6.1",
+		"@react-router/cloudflare": "^7.14.2",
 		"@repo/analytics": "workspace:*",
 		"@repo/auth": "workspace:*",
 		"@repo/db": "workspace:*",
