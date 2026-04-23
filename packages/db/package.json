@@ -19,7 +19,7 @@
 		"pg": "^8.13.1"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20241230.0",
+		"@cloudflare/workers-types": "^4.20260423.1",
 		"@types/pg": "^8.11.10",
 		"typescript": "^5.7.0",
 		"vitest": "^2.1.8"
