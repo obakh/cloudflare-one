@@ -16,7 +16,7 @@
 	},
 	"dependencies": {
 		"drizzle-orm": "^0.44.4",
-		"pg": "^8.13.1"
+		"pg": "^8.21.0"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20241230.0",
